@@ -1,8 +1,8 @@
 name: hashtagable
 description: A new Flutter package project.
 version: 0.0.1
-author: Santa Takahashi <3ta.dev@gmail.com>
-homepage: 3ta.dev@gmail.com
+author: Santa Takahashi <sun.jp.0212@gmail.com>
+homepage: https://www.3tadev.work/
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
