@@ -1,8 +1,8 @@
 name: hashtagable
-description: A new Flutter package project.
+description: Widget and function to implement hashtag-decorated EditableText and RichText. Decorate the words which start with `#`
 version: 0.0.1
 author: Santa Takahashi <sun.jp.0212@gmail.com>
-homepage: https://www.3tadev.work/
+homepage: https://github.com/santa112358/hashtagable
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
