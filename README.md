@@ -25,6 +25,8 @@ If you want to decorate input text, `HashTagEditableText` will help you.
 
 - **RichText**
 
+<img src="https://user-images.githubusercontent.com/43510799/76335010-3a425c00-6337-11ea-98ed-d0bbf1cd4590.png" width = "265"/>
+
 If you want to decorate the text only to display, `getHashTagTextSpan()` will help you.
 All you need is just putting this function in `RichText`.
 ```dart
@@ -40,11 +42,7 @@ All you need is just putting this function in `RichText`.
     ),
 ```
 
-
 The argument `onTap(String)` is called when user tapped tagged text.
-
-
-<img src="https://user-images.githubusercontent.com/43510799/76335010-3a425c00-6337-11ea-98ed-d0bbf1cd4590.png" width = "265"/>
 
 
 
