@@ -42,8 +42,9 @@ All you need is just putting this function in `RichText`.
 
 
 The argument `onTap(String)` is called when user tapped tagged text.
-<img src="https://user-images.githubusercontent.com/43510799/76335010-3a425c00-6337-11ea-98ed-d0bbf1cd4590.png" width = "265"/>
 
+
+<img src="https://user-images.githubusercontent.com/43510799/76335010-3a425c00-6337-11ea-98ed-d0bbf1cd4590.png" width = "265"/>
 
 
 ## Decoration rules
