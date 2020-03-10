@@ -1,8 +1,9 @@
 # hashtagable
 
 Widget and function to implement hashtag-decorated EditableText and RichText.
+It decorates the words start with `#`
 
-It decorates the words which start with `#`
+
 ![result](https://user-images.githubusercontent.com/43510799/76334550-88a32b00-6336-11ea-8209-baa65ede1ca1.gif)
 
 ## Usage
@@ -40,12 +41,12 @@ All you need is just putting this function in `RichText`.
     ),
 ```
 The argument `onTap(String)` is called when user tapped tagged text.
-![richText](https://user-images.githubusercontent.com/43510799/76335010-3a425c00-6337-11ea-98ed-d0bbf1cd4590.png)
+<img src="https://user-images.githubusercontent.com/43510799/76335010-3a425c00-6337-11ea-98ed-d0bbf1cd4590.png" width = "265"/>
 
 ## Decoration rules
 
 The rule is almost same as twitter. It stop decorating if the tag contains emoji or symbols.
 It needs space before `#` to decorate.
-![emoji](https://user-images.githubusercontent.com/43510799/76335013-3c0c1f80-6337-11ea-8047-745082c52df4.png)
+<img src="https://user-images.githubusercontent.com/43510799/76335013-3c0c1f80-6337-11ea-8047-745082c52df4.png" width = "265"/>
 
 
