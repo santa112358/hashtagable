@@ -21,7 +21,7 @@ If you want to decorate input text, `HashTagEditableText` will help you.
       decoratedStyle: TextStyle(fontSize: 14,color:Colors.red),
     ),
 ```
-`decoratedStyle` is the textStyle of tagged text. `basicStyle` is untagged one's
+`decoratedStyle` is the textStyle of tagged text. `basicStyle` is the one of untagged text
 
 - **RichText**
 
