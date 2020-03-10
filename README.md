@@ -23,6 +23,9 @@ If you want to decorate input text, `HashTagEditableText` will help you.
 ```
 `decoratedStyle` is the textStyle of tagged text. `basicStyle` is the one of untagged text
 
+
+
+
 - **RichText**
 
 <img src="https://user-images.githubusercontent.com/43510799/76335010-3a425c00-6337-11ea-98ed-d0bbf1cd4590.png" width = "265"/>
