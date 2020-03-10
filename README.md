@@ -6,7 +6,8 @@ It decorates the words which starts with "#"
 
 ## Usage
 
-- editableText
+- *editableText*
+
 If you want to decorate input text, `HashTagEditableText` will help you.
 ```dart
     HashTagEditableText(
@@ -20,7 +21,8 @@ If you want to decorate input text, `HashTagEditableText` will help you.
     ),
 ```
 
-- RichText
+- *RichText*
+
 If you want to decorate the text only to display, `getHashTagTextSpan()` will help you.
 All you need is just putting this function in `RichText`.
 ```dart
