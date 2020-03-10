@@ -47,9 +47,10 @@ The argument `onTap(String)` is called when user tapped tagged text.
 <img src="https://user-images.githubusercontent.com/43510799/76335010-3a425c00-6337-11ea-98ed-d0bbf1cd4590.png" width = "265"/>
 
 
+
 ## Decoration rules
 
-The rule is almost same as twitter. It stop decorating if the tag contains emoji or symbols.
+The rules are almost same as twitter. It stop decorating if the tag contains emoji or symbol.
 It needs space before `#` to decorate.
 
 
