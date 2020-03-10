@@ -2,11 +2,11 @@
 
 Widget and function to implement hashtag-decorated EditableText and RichText.
 
-It decorates the words which starts with "#"
+It decorates the words which starts with `#`
 
 ## Usage
 
-- *editableText*
+- **editableText**
 
 If you want to decorate input text, `HashTagEditableText` will help you.
 ```dart
@@ -20,8 +20,9 @@ If you want to decorate input text, `HashTagEditableText` will help you.
       decoratedStyle: TextStyle(fontSize: 14,color:Colors.red),
     ),
 ```
+`decoratedStyle` is the textStyle of tagged text. `basicStyle` is untagged one's
 
-- *RichText*
+- **RichText**
 
 If you want to decorate the text only to display, `getHashTagTextSpan()` will help you.
 All you need is just putting this function in `RichText`.
@@ -38,5 +39,10 @@ All you need is just putting this function in `RichText`.
     ),
 ```
 The argument `onTap(String)` is called when user tapped tagged text.
+
+## Decoration rules
+
+The rule is almost same as twitter. It stop decorating if the tag contains emoji or symbols.
+It needs space before `#` to decorate.
 
 
