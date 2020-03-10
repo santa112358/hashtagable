@@ -1,14 +1,9 @@
-# hashtagable
+## hashtagable
 
-A new Flutter package project.
+Widget and function to implement hashtag-decorated EditableText and RichText.
 
-## Getting Started
+It decorates the words which starts with "#"
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+# Usage
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+
