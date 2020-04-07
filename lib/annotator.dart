@@ -88,28 +88,6 @@ class Annotator {
     return result;
   }
 
-  List<Annotation> _getSymbolFilteredAnnotations(
-      List<Annotation> source, String copiedText) {
-    final symbolRegExp = RegExp(r'[!-/]');
-    final result = List<Annotation>();
-    for (var item in source) {
-      final tagContainsSymbol = (item.style != null &&
-          symbolRegExp.hasMatch(
-              copiedText.substring(item.range.end - 1, item.range.end)));
-      if (tagContainsSymbol) {
-        result.add(Annotation(
-            range: TextRange(start: item.range.start, end: item.range.end - 1),
-            style: item.style));
-        result.add(Annotation(
-            range: TextRange(start: item.range.end - 1, end: item.range.end),
-            style: textStyle));
-      } else {
-        result.add(item);
-      }
-    }
-    return result;
-  }
-
   List<Annotation> getAnnotations(String copiedText) {
     /// Text to change emoji into replacement text
     final fullWidthRegExp = RegExp(
@@ -117,7 +95,7 @@ class Annotator {
 
     final fullWidthRegExpMatches =
         fullWidthRegExp.allMatches(copiedText).toList();
-    final japaneseRegExp = RegExp(r'[ぁ-んァ-ヶ一-龥０-９ａ-ｚＡ-Ｚ]');
+    final japaneseRegExp = RegExp(r'[・ぁ-んーァ-ヶ一-龥０-９ａ-ｚＡ-Ｚ]');
     final emojiMatches = fullWidthRegExpMatches
         .where((match) => (!japaneseRegExp
             .hasMatch(copiedText.substring(match.start, match.end))))
@@ -132,7 +110,7 @@ class Annotator {
     });
 
     final hashTagRegExp = RegExp(
-        "(?:^|\\s)(#([ぁ-んァ-ンーa-zA-Z0-9一-龠０-９ａ-ｚＡ-Ｚ\\-\\r]+))[^\\s]?",
+        "(?:^|\\s)(#([・ぁ-んァ-ンーa-zA-Z0-9一-龠０-９ａ-ｚＡ-Ｚ\\-\\r]+))",
         multiLine: true);
 
     final tags = hashTagRegExp.allMatches(copiedText).toList();
@@ -147,8 +125,6 @@ class Annotator {
         emojiMatches: emojiMatches,
         source: sourceAnnotations);
 
-    final symbolFilteredResult =
-        _getSymbolFilteredAnnotations(emojiFilteredResult, copiedText);
-    return symbolFilteredResult;
+    return emojiFilteredResult;
   }
 }
