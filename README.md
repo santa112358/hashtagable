@@ -1,4 +1,5 @@
 
+# hashtagable
 Widget and function to implement hashtag-decorated EditableText and RichText.
 It decorates the words start with `#`
 
@@ -7,7 +8,7 @@ It decorates the words start with `#`
 
 ## Usage
 
-- **editableText**
+- **As EditableText**
 
 If you want to decorate input text, `HashTagEditableText` will help you.
 ```dart
@@ -26,12 +27,12 @@ If you want to decorate input text, `HashTagEditableText` will help you.
 
 
 
-- **RichText**
+- **As RichText**
 
 <img src="https://user-images.githubusercontent.com/43510799/76335010-3a425c00-6337-11ea-98ed-d0bbf1cd4590.png" width = "265"/>
 
 If you want to decorate the text only to display, `getHashTagTextSpan()` will help you.
-All you need is just putting this function in `RichText`.
+All you need to do is just putting this function in `RichText`.
 ```dart
     RichText(
       text: getHashTagTextSpan(
