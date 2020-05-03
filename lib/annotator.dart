@@ -110,7 +110,7 @@ class Annotator {
     });
 
     final hashTagRegExp = RegExp(
-        "(?:^|\\s)(#([・ぁ-んァ-ンーa-zA-Z0-9一-龠０-９ａ-ｚＡ-Ｚ\\-\\r]+))",
+        "(?!\\n)(?:^|\\s)(#([·・ー_ぁ-んァ-ンa-zA-Z0-9一-龠０-９ａ-ｚＡ-Ｚ]+))",
         multiLine: true);
 
     final tags = hashTagRegExp.allMatches(copiedText).toList();
