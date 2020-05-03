@@ -52,7 +52,7 @@ The argument `onTap(String)` is called when user tapped tagged text.
 
 ## Decoration rules
 
-The rules are almost same as twitter. It stop decorating if the tag contains emoji or symbol.
+The rules are almost same as twitter. It doesn't decorate the tags which contain emoji or symbol.
 It needs space before `#` to decorate.
 
 
