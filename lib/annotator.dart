@@ -73,7 +73,7 @@ class Annotator {
               : emojiMatch.start;
         }
       }
-      if (item.style != null && emojiStartPoint != null) {
+      if (item.style == decoratedStyle && emojiStartPoint != null) {
         result.add(Annotation(
           range: TextRange(start: item.range.start, end: emojiStartPoint),
           style: decoratedStyle,

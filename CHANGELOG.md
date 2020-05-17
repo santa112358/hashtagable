@@ -1,3 +1,7 @@
+## 0.0.5
+
+* Fix the handling of emoji
+
 ## 0.0.4
 
 * Fix RegExp to differentiate hashtag from source
