@@ -57,7 +57,7 @@ class HashTagEditableText extends EditableText {
     this.decoratedStyle,
   }) : super(
           key: key,
-          focusNode: focusNode,
+          focusNode: (focusNode) ?? FocusNode(),
           controller: controller,
           cursorColor: cursorColor,
           style: basicStyle,
