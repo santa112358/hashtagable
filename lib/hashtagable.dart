@@ -53,6 +53,7 @@ class HashTagEditableText extends EditableText {
     Color cursorColor,
     int maxLines,
     TextInputType keyboardType,
+    bool autofocus,
     this.decoratedStyle,
   }) : super(
           key: key,
@@ -62,7 +63,7 @@ class HashTagEditableText extends EditableText {
           style: basicStyle,
           keyboardType: (keyboardType) ?? TextInputType.text,
           autocorrect: false,
-          autofocus: true,
+          autofocus: (autofocus) ?? false,
           onChanged: onChanged,
           onSubmitted: onSubmitted,
           backgroundCursorColor: Colors.white,
