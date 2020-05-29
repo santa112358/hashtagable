@@ -16,6 +16,10 @@ class Annotation extends Comparable<Annotation> {
 class Annotator {
   final TextStyle textStyle;
   final TextStyle decoratedStyle;
+  static final hashTagRegExp = RegExp(
+    "(?!\\n)(?:^|\\s)(#([·・ー_ぁ-んァ-ンa-zA-Z0-9一-龠０-９ａ-ｚＡ-ＺáàãâéêíóôõúüçÁÀÃÂÉÊÍÓÔÕÚÜÇ]+))",
+    multiLine: true,
+  );
 
   Annotator({this.textStyle, this.decoratedStyle});
 
@@ -108,10 +112,6 @@ class Annotator {
       copiedText = copiedText.replaceRange(
           emojiMatch.start, emojiMatch.end, replacementText);
     });
-
-    final hashTagRegExp = RegExp(
-        "(?!\\n)(?:^|\\s)(#([·・ー_ぁ-んァ-ンa-zA-Z0-9一-龠０-９ａ-ｚＡ-Ｚ]+))",
-        multiLine: true);
 
     final tags = hashTagRegExp.allMatches(copiedText).toList();
     if (tags.isEmpty) {

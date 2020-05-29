@@ -52,16 +52,18 @@ class HashTagEditableText extends EditableText {
     ValueChanged<String> onSubmitted,
     Color cursorColor,
     int maxLines,
+    TextInputType keyboardType,
+    bool autofocus,
     this.decoratedStyle,
   }) : super(
           key: key,
-          focusNode: focusNode,
+          focusNode: (focusNode) ?? FocusNode(),
           controller: controller,
           cursorColor: cursorColor,
           style: basicStyle,
-          keyboardType: TextInputType.text,
+          keyboardType: (keyboardType) ?? TextInputType.text,
           autocorrect: false,
-          autofocus: true,
+          autofocus: (autofocus) ?? false,
           onChanged: onChanged,
           onSubmitted: onSubmitted,
           backgroundCursorColor: Colors.white,
@@ -86,6 +88,15 @@ class HashTagEditableTextState extends EditableTextState {
     annotator = Annotator(
         textStyle: widget.style, decoratedStyle: widget.decoratedStyle);
     super.initState();
+  }
+
+  // NOTE checks if the text has hashtags
+  static List<RegExpMatch> checkHashtags(String value) {
+    final hashTagRegExp = Annotator.hashTagRegExp;
+
+    final tags = hashTagRegExp.allMatches(value).toList();
+
+    return (tags.isEmpty) ? [] : tags;
   }
 
   @override
