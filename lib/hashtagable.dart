@@ -90,6 +90,15 @@ class HashTagEditableTextState extends EditableTextState {
     super.initState();
   }
 
+  // NOTE checks if the text has hashtags
+  static List<RegExpMatch> checkHashtags(String value) {
+    final hashTagRegExp = Annotator.hashTagRegExp;
+
+    final tags = hashTagRegExp.allMatches(value).toList();
+
+    return (tags.isEmpty) ? [] : tags;
+  }
+
   @override
   TextSpan buildTextSpan() {
     final String sourceText = textEditingValue.text;
