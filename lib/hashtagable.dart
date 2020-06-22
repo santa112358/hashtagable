@@ -94,6 +94,7 @@ class HashTagEditableTextState extends EditableTextState {
   }
 
   // NOTE checks if the text has hashtags
+  // ignore: non_constant_identifier_names
   static List<RegExpMatch> /*checkHashtags*/ (String value) {
     final hashTagRegExp = Annotator.hashTagRegExp;
 
