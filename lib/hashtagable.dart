@@ -159,11 +159,35 @@ class HashTagEditableTextWithHintText extends StatelessWidget {
             child: Stack(
               children: [
                 _HintText(hintText, hintTextStyle),
-                _Body(),
+                _Body(
+                  controller: this.controller,
+                  onSubmitted: this.onSubmitted,
+                  onChanged: this.onChanged,
+                  maxLines: this.maxLines,
+                  keyboardType: this.keyboardType,
+                  key: this.key,
+                  focusNode: this.focusNode,
+                  cursorColor: this.cursorColor,
+                  autofocus: this.autofocus,
+                  basicStyle: this.basicStyle,
+                  decoratedStyle: this.decoratedStyle,
+                ),
               ],
             ),
           )
-        : _Body();
+        : _Body(
+            controller: this.controller,
+            onSubmitted: this.onSubmitted,
+            onChanged: this.onChanged,
+            maxLines: this.maxLines,
+            keyboardType: this.keyboardType,
+            key: this.key,
+            focusNode: this.focusNode,
+            cursorColor: this.cursorColor,
+            autofocus: this.autofocus,
+            basicStyle: this.basicStyle,
+            decoratedStyle: this.decoratedStyle,
+          );
   }
 }
 
