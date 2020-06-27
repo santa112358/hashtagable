@@ -1,3 +1,7 @@
+## 0.0.8
+
+* Fix HashTagEditableTextWithHintText by adding missing parameters
+
 ## 0.0.7
 
 * Implement HashTadEditableTextWithHintText
