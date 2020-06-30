@@ -47,10 +47,6 @@ class _MyAppState extends State<MyApp> {
                   keyboardType: TextInputType.multiline,
                 ),
               ),
-              TextField(
-                maxLength: 4,
-                maxLengthEnforced: false,
-              ),
               const SizedBox(
                 height: 48,
               ),
