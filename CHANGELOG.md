@@ -1,3 +1,9 @@
+## 0.1.0
+
+* Abolish HashTagEditableTextWithHintText, enable hintText in HashTagEditableText
+* Add `extractHashTags()` for extracting hashtags from text.
+* Add `hasHashtags()` for check if it has hashtags.
+
 ## 0.0.8
 
 * Fix HashTagEditableTextWithHintText by adding missing parameters
