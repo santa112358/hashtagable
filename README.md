@@ -1,5 +1,5 @@
 
-# hashtagable [https://img.shields.io/pub/v/hashtagable.svg](https://pub.dev/packages/hashtagable)
+# hashtagable [![pub package](https://img.shields.io/pub/v/hashtagable.svg)](https://pub.dev/packages/hashtagable)
 Widget and function to implement hashtag-decorated EditableText and RichText.
 It decorates the words start with `#`
 
