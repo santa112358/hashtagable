@@ -30,36 +30,11 @@ class _MyAppState extends State<MyApp> {
                   },
                 ),
               ),
-              Text("Without hint text "),
-              const SizedBox(
-                height: 8,
-              ),
 
               /// You don't need to add decorated box. This is to make it visible
               DecoratedBox(
                 decoration: BoxDecoration(border: Border.all()),
                 child: HashTagEditableText(
-                  decoratedStyle: TextStyle(fontSize: 14, color: Colors.black),
-                  basicStyle: TextStyle(fontSize: 14, color: Colors.blue),
-                  cursorColor: Theme.of(context).cursorColor,
-                  controller: TextEditingController(),
-                  maxLines: 4,
-                  keyboardType: TextInputType.multiline,
-                ),
-              ),
-              const SizedBox(
-                height: 48,
-              ),
-              Text("With hint text "),
-              const SizedBox(
-                height: 8,
-              ),
-
-              /// You don't need to add decorated box. This is to make it visible
-              DecoratedBox(
-                decoration: BoxDecoration(border: Border.all()),
-                child: HashTagEditableTextWithHintText(
-                  hintText: "THIS IS HINT TEXT",
                   hintTextStyle: TextStyle(
                       fontSize: 14, color: Theme.of(context).hintColor),
                   basicStyle: TextStyle(fontSize: 14, color: Colors.black),
@@ -68,6 +43,7 @@ class _MyAppState extends State<MyApp> {
                   onChanged: (str) {
                     print(str);
                   },
+                  keyboardType: TextInputType.multiline,
                 ),
               ),
             ],

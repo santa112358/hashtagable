@@ -15,6 +15,7 @@ class HashTagEditableText extends StatelessWidget {
     this.cursorColor,
     this.focusNode,
     this.maxLines,
+    this.minLines,
     this.keyboardType,
     this.autofocus,
     this.hintText,
@@ -29,6 +30,7 @@ class HashTagEditableText extends StatelessWidget {
   final Color cursorColor;
   final FocusNode focusNode;
   final int maxLines;
+  final int minLines;
   final TextInputType keyboardType;
   final bool autofocus;
   final String hintText;
@@ -85,6 +87,7 @@ class _Body extends StatelessWidget {
     this.cursorColor,
     this.focusNode,
     this.maxLines,
+    this.minLines,
     this.keyboardType,
     this.autofocus,
   });
@@ -97,6 +100,7 @@ class _Body extends StatelessWidget {
   final Color cursorColor;
   final FocusNode focusNode;
   final int maxLines;
+  final int minLines;
   final TextInputType keyboardType;
   final bool autofocus;
 
@@ -127,11 +131,12 @@ class _HintText extends StatelessWidget {
   final TextStyle textStyle;
 
   _HintText(this.text, this.textStyle);
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Provider.of<HintTextController>(context).isContentEmpty
-        ? Text(text,
+        ? Text(text ?? "",
             style: textStyle ??
                 theme.textTheme.bodyText2.copyWith(color: theme.hintColor))
         : const SizedBox.shrink();
@@ -148,6 +153,7 @@ class _EditableText extends EditableText {
     ValueChanged<String> onSubmitted,
     @required Color cursorColor,
     int maxLines,
+    int minLines,
     TextInputType keyboardType,
     bool autofocus,
     @required this.decoratedStyle,
@@ -164,6 +170,7 @@ class _EditableText extends EditableText {
           onSubmitted: onSubmitted,
           backgroundCursorColor: Colors.white,
           maxLines: maxLines,
+          minLines: minLines,
         );
 
   final TextStyle decoratedStyle;
