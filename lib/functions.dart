@@ -23,9 +23,10 @@ List<String> extractHashTags(String value) {
   final decoratedAnnotations = annotations
       .where((annotation) => annotation.style.color == decoratedTextColor)
       .toList();
-  final result = decoratedAnnotations
-      .map((annotation) => annotation.range.textInside(value))
-      .toList();
+  final result = decoratedAnnotations.map((annotation) {
+    final text = annotation.range.textInside(value);
+    return text.trim();
+  }).toList();
   return result;
 }
 
