@@ -1,7 +1,7 @@
 
-# hashtagable
-Widget and function to implement hashtag-decorated EditableText and RichText.
-It decorates the words start with `#`
+# hashtagable [![pub package](https://img.shields.io/pub/v/hashtagable.svg)](https://pub.dev/packages/hashtagable)
+A widget and functions to implement hashtag-decorated text.
+Decorates the words start with `#`
 
 
 ![result](https://user-images.githubusercontent.com/43510799/76334550-88a32b00-6336-11ea-8209-baa65ede1ca1.gif)
@@ -22,7 +22,7 @@ If you want to decorate input text, `HashTagEditableText` will help you.
       decoratedStyle: TextStyle(fontSize: 14,color:Colors.red),
     ),
 ```
-`decoratedStyle` is the textStyle of tagged text. `basicStyle` is the one of untagged text
+`decoratedStyle` is the textStyle of tagged text. `basicStyle` is that of untagged text.
 
 
 
@@ -47,6 +47,24 @@ All you need to do is just putting this function in `RichText`.
 ```
 
 The argument `onTap(String)` is called when user tapped tagged text.
+
+## Customize hashtag features
+
+- Check if the text has hashtags
+```dart
+   final hasHashTags = hasHashtags("Hello #World"); 
+   // true
+   
+   final hasHashtags = hasHashtags("Hello World");
+   // false
+   
+```
+- Extract hashtags from text
+```dart
+   final List<String> hashtags = extractHashtags("#Hello World #Flutter Dart #Thank you");
+   // ["#Hello", "#Flutter", "#Thank"]
+
+```
 
 
 

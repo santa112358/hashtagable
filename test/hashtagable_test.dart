@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hashtagable/annotator.dart';
+import 'package:hashtagable/functions.dart';
 
 void main() {
   final decoratedColor = Colors.red;
@@ -105,5 +106,17 @@ void main() {
     final source = "#hash\ntag";
     expect(annotator.getAnnotations(source).length, 2);
     expect(annotator.getAnnotations(source)[0].style.color, decoratedColor);
+  });
+
+  test("check if functions are working correctly", () {
+    final hasHashtagsTrue = hasHashTags("#hashtag hashtag");
+    final hasHashtagFalse = hasHashTags("hashtag hashtag");
+    final hashTagList = extractHashTags("#hello world #Thank You #So Much");
+    expect(hasHashtagsTrue, true);
+    expect(hasHashtagFalse, false);
+    expect(hashTagList[0], "#hello");
+    expect(hashTagList[1], "#Thank");
+    expect(hashTagList[2], "#So");
+    expect(hashTagList.length, 3);
   });
 }
