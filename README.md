@@ -61,7 +61,6 @@ The argument `onTap(String)` is called when user tapped tagged text.
 ```
 - Extract hashtags from text
 ```dart
-   /// Extract hashtags from text
    final List<String> hashtags = extractHashtags("#Hello World #Flutter Dart #Thank you");
    // ["#Hello", "#Flutter", "#Thank"]
 
