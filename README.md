@@ -1,7 +1,7 @@
 
 # hashtagable [![pub package](https://img.shields.io/pub/v/hashtagable.svg)](https://pub.dev/packages/hashtagable)
-Widget and function to implement hashtag-decorated EditableText and RichText.
-It decorates the words start with `#`
+Widget and function to implement hashtag-decorated Text.
+Decorates the words start with `#`
 
 
 ![result](https://user-images.githubusercontent.com/43510799/76334550-88a32b00-6336-11ea-8209-baa65ede1ca1.gif)
