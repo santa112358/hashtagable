@@ -65,6 +65,9 @@ class _MyAppState extends State<MyApp> {
                   basicStyle: TextStyle(fontSize: 14, color: Colors.black),
                   decoratedStyle: TextStyle(fontSize: 14, color: Colors.blue),
                   cursorColor: Theme.of(context).cursorColor,
+                  onChanged: (str) {
+                    print(str);
+                  },
                 ),
               ),
             ],
