@@ -1,19 +1,23 @@
 import 'package:flutter/cupertino.dart';
 
-class Annotation extends Comparable<Annotation> {
-  Annotation({@required this.range, this.style, this.emojiStartPoint});
+/// DataModel to explain the unit of word in decoration system
+class Decoration extends Comparable<Decoration> {
+  Decoration({@required this.range, this.style, this.emojiStartPoint});
 
   final TextRange range;
   final TextStyle style;
   final int emojiStartPoint;
 
   @override
-  int compareTo(Annotation other) {
+  int compareTo(Decoration other) {
     return range.start.compareTo(other.range.start);
   }
 }
 
-class Annotator {
+/// Hold functions to decorate tagged text
+///
+/// Return the list of [Decoration] in [getDecorations]
+class Decorator {
   final TextStyle textStyle;
   final TextStyle decoratedStyle;
   static final hashTagRegExp = RegExp(
@@ -21,27 +25,27 @@ class Annotator {
     multiLine: true,
   );
 
-  Annotator({this.textStyle, this.decoratedStyle});
+  Decorator({this.textStyle, this.decoratedStyle});
 
-  List<Annotation> _getSourceAnnotations(
+  List<Decoration> _getSourceDecorations(
       List<RegExpMatch> tags, String copiedText) {
     TextRange previousItem;
-    final result = List<Annotation>();
+    final result = List<Decoration>();
     for (var tag in tags) {
       ///Add untagged content
       if (previousItem == null) {
         if (tag.start > 0) {
-          result.add(Annotation(
+          result.add(Decoration(
               range: TextRange(start: 0, end: tag.start), style: textStyle));
         }
       } else {
-        result.add(Annotation(
+        result.add(Decoration(
             range: TextRange(start: previousItem.end, end: tag.start),
             style: textStyle));
       }
 
       ///Add tagged content
-      result.add(Annotation(
+      result.add(Decoration(
           range: TextRange(start: tag.start, end: tag.end),
           style: decoratedStyle));
       previousItem = TextRange(start: tag.start, end: tag.end);
@@ -49,7 +53,7 @@ class Annotator {
 
     ///Add remaining untagged content
     if (result.last.range.end < copiedText.length) {
-      result.add(Annotation(
+      result.add(Decoration(
           range:
               TextRange(start: result.last.range.end, end: copiedText.length),
           style: textStyle));
@@ -58,17 +62,17 @@ class Annotator {
   }
 
   ///Decorate tagged content, filter out the ones includes emoji.
-  List<Annotation> _getEmojiFilteredAnnotations(
-      {List<Annotation> source,
+  List<Decoration> _getEmojiFilteredDecorations(
+      {List<Decoration> source,
       String copiedText,
       List<RegExpMatch> emojiMatches}) {
-    final result = List<Annotation>();
+    final result = List<Decoration>();
     for (var item in source) {
       int emojiStartPoint;
       for (var emojiMatch in emojiMatches) {
-        final annotationContainsEmoji = (item.range.start < emojiMatch.start &&
+        final decorationContainsEmoji = (item.range.start < emojiMatch.start &&
             emojiMatch.end <= item.range.end);
-        if (annotationContainsEmoji) {
+        if (decorationContainsEmoji) {
           /// If the current Emoji's range.start is the smallest in the tag, update emojiStartPoint
           emojiStartPoint = (emojiStartPoint != null)
               ? ((emojiMatch.start < emojiStartPoint)
@@ -78,11 +82,11 @@ class Annotator {
         }
       }
       if (item.style == decoratedStyle && emojiStartPoint != null) {
-        result.add(Annotation(
+        result.add(Decoration(
           range: TextRange(start: item.range.start, end: emojiStartPoint),
           style: decoratedStyle,
         ));
-        result.add(Annotation(
+        result.add(Decoration(
             range: TextRange(start: emojiStartPoint, end: item.range.end),
             style: textStyle));
       } else {
@@ -92,7 +96,7 @@ class Annotator {
     return result;
   }
 
-  List<Annotation> getAnnotations(String copiedText) {
+  List<Decoration> getDecorations(String copiedText) {
     /// Text to change emoji into replacement text
     final fullWidthRegExp = RegExp(
         r'(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])');
@@ -118,12 +122,12 @@ class Annotator {
       return [];
     }
 
-    final sourceAnnotations = _getSourceAnnotations(tags, copiedText);
+    final sourceDecorations = _getSourceDecorations(tags, copiedText);
 
-    final emojiFilteredResult = _getEmojiFilteredAnnotations(
+    final emojiFilteredResult = _getEmojiFilteredDecorations(
         copiedText: copiedText,
         emojiMatches: emojiMatches,
-        source: sourceAnnotations);
+        source: sourceDecorations);
 
     return emojiFilteredResult;
   }

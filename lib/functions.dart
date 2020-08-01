@@ -1,30 +1,30 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:hashtagable/annotator.dart';
+import 'package:hashtagable/decorator.dart';
 
 bool hasHashTags(String value) {
   final decoratedTextColor = Colors.blue;
-  final annotator = Annotator(
+  final decorator = Decorator(
       textStyle: TextStyle(),
       decoratedStyle: TextStyle(color: decoratedTextColor));
-  final result = annotator.getAnnotations(value);
-  final decoratedAnnotations = result
-      .where((annotation) => annotation.style.color == decoratedTextColor)
+  final result = decorator.getDecorations(value);
+  final taggedDecorations = result
+      .where((decoration) => decoration.style.color == decoratedTextColor)
       .toList();
-  return decoratedAnnotations.isNotEmpty;
+  return taggedDecorations.isNotEmpty;
 }
 
 List<String> extractHashTags(String value) {
   final decoratedTextColor = Colors.blue;
-  final annotator = Annotator(
+  final decorator = Decorator(
       textStyle: TextStyle(),
       decoratedStyle: TextStyle(color: decoratedTextColor));
-  final annotations = annotator.getAnnotations(value);
-  final decoratedAnnotations = annotations
-      .where((annotation) => annotation.style.color == decoratedTextColor)
+  final decorations = decorator.getDecorations(value);
+  final taggedDecorations = decorations
+      .where((decoration) => decoration.style.color == decoratedTextColor)
       .toList();
-  final result = decoratedAnnotations.map((annotation) {
-    final text = annotation.range.textInside(value);
+  final result = taggedDecorations.map((decoration) {
+    final text = decoration.range.textInside(value);
     return text.trim();
   }).toList();
   return result;
@@ -32,14 +32,14 @@ List<String> extractHashTags(String value) {
 
 TextSpan getHashTagTextSpan(TextStyle decoratedStyle, TextStyle basicStyle,
     String source, Function(String) onTap) {
-  final annotations =
-      Annotator(decoratedStyle: decoratedStyle, textStyle: basicStyle)
-          .getAnnotations(source);
-  if (annotations.isEmpty) {
+  final decorations =
+      Decorator(decoratedStyle: decoratedStyle, textStyle: basicStyle)
+          .getDecorations(source);
+  if (decorations.isEmpty) {
     return TextSpan(text: source, style: basicStyle);
   } else {
-    annotations.sort();
-    final span = annotations
+    decorations.sort();
+    final span = decorations
         .asMap()
         .map(
           (index, item) {
@@ -50,9 +50,9 @@ TextSpan getHashTagTextSpan(TextStyle decoratedStyle, TextStyle basicStyle,
                 text: item.range.textInside(source),
                 recognizer: TapGestureRecognizer()
                   ..onTap = () {
-                    final annotation = annotations[index];
-                    if (annotation.style == decoratedStyle) {
-                      onTap(annotation.range.textInside(source));
+                    final decoration = decorations[index];
+                    if (decoration.style == decoratedStyle) {
+                      onTap(decoration.range.textInside(source));
                     }
                   },
               ),
