@@ -1,7 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:hashtagable/decorator.dart';
+import 'package:hashtagable/hashtag_text.dart';
 
+/// Check if the text has hashTags
 bool hasHashTags(String value) {
   final decoratedTextColor = Colors.blue;
   final decorator = Decorator(
@@ -14,6 +16,7 @@ bool hasHashTags(String value) {
   return taggedDecorations.isNotEmpty;
 }
 
+/// Extract hashTags from the text
 List<String> extractHashTags(String value) {
   final decoratedTextColor = Colors.blue;
   final decorator = Decorator(
@@ -30,6 +33,9 @@ List<String> extractHashTags(String value) {
   return result;
 }
 
+/// Returns textSpan with decorated tagged text
+///
+/// Used in [HashTagText]
 TextSpan getHashTagTextSpan(
     {@required TextStyle decoratedStyle,
     @required TextStyle basicStyle,

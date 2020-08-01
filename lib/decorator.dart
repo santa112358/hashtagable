@@ -96,6 +96,7 @@ class Decorator {
     return result;
   }
 
+  /// Return the list of decorations with tagged and untagged text
   List<Decoration> getDecorations(String copiedText) {
     /// Text to change emoji into replacement text
     final fullWidthRegExp = RegExp(
