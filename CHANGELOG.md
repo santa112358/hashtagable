@@ -1,3 +1,7 @@
+## 0.1.1
+* Add a Widget `HashTagText` to implement tagged text only to be shown.
+* Add detail documentation. 
+
 ## 0.1.0
 
 * Abolish HashTagEditableTextWithHintText, enable hintText in HashTagEditableText

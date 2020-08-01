@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:hashtagable/annotator.dart';
+import 'package:hashtagable/decorator.dart';
 import 'package:provider/provider.dart';
 
 import 'hint_text_controller.dart';
 
+/// Show decorated tagged text while user is inputting text.
+///
+/// [decoratedStyle] is textStyle of tagged text.
+/// [basicStyle] is textStyle of others.
 class HashTagEditableText extends StatelessWidget {
   HashTagEditableText({
     Key key,
@@ -126,6 +130,9 @@ class _Body extends StatelessWidget {
   }
 }
 
+/// TextWidget to show hintText
+///
+/// Its visibility is controlled by [HintTextController]
 class _HintText extends StatelessWidget {
   final String text;
   final TextStyle textStyle;
@@ -143,6 +150,7 @@ class _HintText extends StatelessWidget {
   }
 }
 
+/// EditableText which decorates the contents start with "#"
 class _EditableText extends EditableText {
   _EditableText({
     Key key,
@@ -176,19 +184,21 @@ class _EditableText extends EditableText {
   final TextStyle decoratedStyle;
 
   @override
-  HashTagEditableTextState createState() => HashTagEditableTextState();
+  _EditableTextState createState() => _EditableTextState();
 }
 
-/// EditableText which decorates the contents start with "#"
-class HashTagEditableTextState extends EditableTextState {
+/// State of _EditableText
+///
+/// Return decorated tagged text by using functions in [Decorator]
+class _EditableTextState extends EditableTextState {
   @override
   _EditableText get widget => super.widget;
 
-  Annotator annotator;
+  Decorator decorator;
 
   @override
   void initState() {
-    annotator = Annotator(
+    decorator = Decorator(
         textStyle: widget.style, decoratedStyle: widget.decoratedStyle);
     super.initState();
   }
@@ -196,12 +206,12 @@ class HashTagEditableTextState extends EditableTextState {
   @override
   TextSpan buildTextSpan() {
     final String sourceText = textEditingValue.text;
-    final annotations = annotator.getAnnotations(sourceText);
-    if (annotations.isEmpty) {
+    final decorations = decorator.getDecorations(sourceText);
+    if (decorations.isEmpty) {
       return TextSpan(text: sourceText, style: widget.style);
     } else {
-      annotations.sort();
-      final span = annotations.map((item) {
+      decorations.sort();
+      final span = decorations.map((item) {
         return TextSpan(
             style: item.style, text: item.range.textInside(sourceText));
       }).toList();
