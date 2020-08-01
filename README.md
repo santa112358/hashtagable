@@ -48,15 +48,15 @@ If you want to decorate the text only to display, `HashTagText` will help you.
     )
 ```
 
-The argument `onTap(String)` is called when user tapped tagged text. 
+The argument `onTap(String)` is called when user tapped a hashTag. 
 
-You can add some actions in that functions with a tapped tag
+You can add some actions in this callback with the tapped hashTag.
 
 
 
 ## Customize hashTag features with useful functions
 
-- Check if the text has hashtags
+- Check if the text has hashTags
 ```dart
    print(hasHashtags("Hello #World")); 
    // true
