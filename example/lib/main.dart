@@ -26,9 +26,11 @@ class _MyAppState extends State<MyApp> {
                 basicStyle: TextStyle(fontSize: 14, color: Colors.red),
                 decoratedStyle: TextStyle(fontSize: 14, color: Colors.black),
               ),
+
               /// You don't need to add decorated box. This is to make it visible
               DecoratedBox(
                 decoration: BoxDecoration(border: Border.all()),
+
                 /// Decorate tagged input text
                 child: HashTagEditableText(
                   hintTextStyle: TextStyle(
