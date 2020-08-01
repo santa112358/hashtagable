@@ -1,7 +1,11 @@
 
-# hashtagable [![pub package](https://img.shields.io/pub/v/hashtagable.svg)](https://pub.dev/packages/hashtagable)
+# hashtagable 
+
+[![test](https://github.com/santa112358/hashtagable/workflows/test/badge.svg)](https://github.com/santa112358/hashtagable/actions?query=workflow%3Atest) [![pub package](https://img.shields.io/pub/v/hashtagable.svg)](https://pub.dev/packages/hashtagable)
+
 Widgets and functions to implement hashTag decorated text.
-Decorates the words start with `#`
+
+Decorates the words start with `#` like a Twitter.
 
 
 ![result](https://user-images.githubusercontent.com/43510799/76334550-88a32b00-6336-11ea-8209-baa65ede1ca1.gif)
@@ -9,6 +13,7 @@ Decorates the words start with `#`
 ## Usage
 
 - **As InputText**
+
 You can use `HashTagEditableText` to decorate input text.
 ```dart
     HashTagEditableText(
@@ -33,23 +38,25 @@ You can use `HashTagEditableText` to decorate input text.
 
 If you want to decorate the text only to display, `HashTagText` will help you.
 ```dart
-    RichText(
-      text: getHashTagTextSpan(
-          decoratedStyle: TextStyle(fontSize: 14,color:Colors.red),
-          basicStyle: TextStyle(fontSize: 14,color:Colors.black),
-          source: "#Hello world. Hello #world",
-          onTap: (text) {
-            print(text);
-          },
-      ),
-    ),
+    HashTagText(
+        text: "#Hello world. Hello #world",
+        decoratedStyle: TextStyle(fontSize: 14,color:Colors.red),
+        basicStyle: TextStyle(fontSize: 14,color:Colors.black),
+        onTap: (text) {
+          print(text);
+        },
+    )
 ```
 
-The argument `onTap(String)` is called when user tapped tagged text. You can add some actions in that functions with a tapped tag
+The argument `onTap(String)` is called when user tapped a hashTag. 
 
-## Customize hashTag features with useful functions
+You can add some actions in this callback with the tapped hashTag.
 
-- Check if the text has hashtags
+
+
+## Customize your own hashTag features with some useful functions
+
+- Check if the text has hashTags
 ```dart
    print(hasHashtags("Hello #World")); 
    // true
