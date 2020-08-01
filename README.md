@@ -1,6 +1,6 @@
 
 # hashtagable [![pub package](https://img.shields.io/pub/v/hashtagable.svg)](https://pub.dev/packages/hashtagable)
-A widget and functions to implement hashtag-decorated text.
+Widgets and functions to implement hashTag decorated text.
 Decorates the words start with `#`
 
 
@@ -8,9 +8,8 @@ Decorates the words start with `#`
 
 ## Usage
 
-- **As EditableText**
-
-If you want to decorate input text, `HashTagEditableText` will help you.
+- **As InputText**
+You can use `HashTagEditableText` to decorate input text.
 ```dart
     HashTagEditableText(
       controller: _textEditingController,
@@ -20,19 +19,19 @@ If you want to decorate input text, `HashTagEditableText` will help you.
       onChanged: (_) {},
       onSubmitted: (_) {},
       decoratedStyle: TextStyle(fontSize: 14,color:Colors.red),
+      hintText: "Type Here"
     ),
 ```
-`decoratedStyle` is the textStyle of tagged text. `basicStyle` is that of untagged text.
+`decoratedStyle` is the textStyle of tagged text. `basicStyle` is for untagged text.
 
 
 
 
-- **As RichText**
+- **As ReadOnlyText**
 
 <img src="https://user-images.githubusercontent.com/43510799/76335010-3a425c00-6337-11ea-98ed-d0bbf1cd4590.png" width = "265"/>
 
-If you want to decorate the text only to display, `getHashTagTextSpan()` will help you.
-All you need to do is just putting this function in `RichText`.
+If you want to decorate the text only to display, `HashTagText` will help you.
 ```dart
     RichText(
       text: getHashTagTextSpan(
@@ -46,31 +45,30 @@ All you need to do is just putting this function in `RichText`.
     ),
 ```
 
-The argument `onTap(String)` is called when user tapped tagged text.
+The argument `onTap(String)` is called when user tapped tagged text. You can add some actions in that functions with a tapped tag
 
-## Customize hashtag features
+## Customize hashTag features with useful functions
 
 - Check if the text has hashtags
 ```dart
-   final hasHashTags = hasHashtags("Hello #World"); 
+   print(hasHashtags("Hello #World")); 
    // true
    
-   final hasHashtags = hasHashtags("Hello World");
+   print(hasHashtags("Hello World"));
    // false
    
 ```
-- Extract hashtags from text
+- Extract hashTags from text
 ```dart
-   final List<String> hashtags = extractHashtags("#Hello World #Flutter Dart #Thank you");
+   final List<String> hashTags = extractHashTags("#Hello World #Flutter Dart #Thank you");
    // ["#Hello", "#Flutter", "#Thank"]
 
 ```
 
 
-
 ## Decoration rules
 
-The rules are almost same as twitter. It doesn't decorate the tags which contain emoji or symbol.
+The rules are almost same as twitter. It does not decorate the tags which contain emoji or symbol.
 It needs space before `#` to decorate.
 
 

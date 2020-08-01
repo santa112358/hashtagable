@@ -41,7 +41,11 @@ class HashTagText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RichText(
-      text: getHashTagTextSpan(decoratedStyle, basicStyle, text, onTap),
+      text: getHashTagTextSpan(
+          decoratedStyle: decoratedStyle,
+          basicStyle: basicStyle,
+          onTap: onTap,
+          source: text),
       textAlign: textAlign,
       textDirection: textDirection,
       softWrap: softWrap,

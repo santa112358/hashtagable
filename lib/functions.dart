@@ -30,8 +30,11 @@ List<String> extractHashTags(String value) {
   return result;
 }
 
-TextSpan getHashTagTextSpan(TextStyle decoratedStyle, TextStyle basicStyle,
-    String source, Function(String) onTap) {
+TextSpan getHashTagTextSpan(
+    {@required TextStyle decoratedStyle,
+    @required TextStyle basicStyle,
+    @required String source,
+    @required Function(String) onTap}) {
   final decorations =
       Decorator(decoratedStyle: decoratedStyle, textStyle: basicStyle)
           .getDecorations(source);
