@@ -1,7 +1,10 @@
 
-# hashtagable [![pub package](https://img.shields.io/pub/v/hashtagable.svg)](https://pub.dev/packages/hashtagable)
+# hashtagable 
+
+![test](https://github.com/santa112358/hashtagable/workflows/test/badge.svg) [![pub package](https://img.shields.io/pub/v/hashtagable.svg)](https://pub.dev/packages/hashtagable)
 Widgets and functions to implement hashTag decorated text.
-Decorates the words start with `#`
+
+Decorates the words start with `#` like a Twitter.
 
 
 ![result](https://user-images.githubusercontent.com/43510799/76334550-88a32b00-6336-11ea-8209-baa65ede1ca1.gif)
@@ -9,6 +12,7 @@ Decorates the words start with `#`
 ## Usage
 
 - **As InputText**
+
 You can use `HashTagEditableText` to decorate input text.
 ```dart
     HashTagEditableText(
@@ -45,7 +49,9 @@ If you want to decorate the text only to display, `HashTagText` will help you.
     ),
 ```
 
-The argument `onTap(String)` is called when user tapped tagged text. You can add some actions in that functions with a tapped tag
+The argument `onTap(String)` is called when user tapped tagged text. 
+
+You can add some actions in that functions with a tapped tag
 
 ## Customize hashTag features with useful functions
 
