@@ -1,7 +1,7 @@
 
 # hashtagable 
 
-![test](https://github.com/santa112358/hashtagable/workflows/test/badge.svg) [![pub package](https://img.shields.io/pub/v/hashtagable.svg)](https://pub.dev/packages/hashtagable)
+[![test](https://github.com/santa112358/hashtagable/workflows/test/badge.svg)](https://github.com/santa112358/hashtagable/actions?query=workflow%3Atest) [![pub package](https://img.shields.io/pub/v/hashtagable.svg)](https://pub.dev/packages/hashtagable)
 
 Widgets and functions to implement hashTag decorated text.
 
