@@ -38,21 +38,21 @@ You can use `HashTagEditableText` to decorate input text.
 
 If you want to decorate the text only to display, `HashTagText` will help you.
 ```dart
-    RichText(
-      text: getHashTagTextSpan(
-          decoratedStyle: TextStyle(fontSize: 14,color:Colors.red),
-          basicStyle: TextStyle(fontSize: 14,color:Colors.black),
-          source: "#Hello world. Hello #world",
-          onTap: (text) {
-            print(text);
-          },
-      ),
-    ),
+    HashTagText(
+        text: "#Hello world. Hello #world",
+        decoratedStyle: TextStyle(fontSize: 14,color:Colors.red),
+        basicStyle: TextStyle(fontSize: 14,color:Colors.black),
+        onTap: (text) {
+          print(text);
+        },
+    )
 ```
 
 The argument `onTap(String)` is called when user tapped tagged text. 
 
 You can add some actions in that functions with a tapped tag
+
+
 
 ## Customize hashTag features with useful functions
 
