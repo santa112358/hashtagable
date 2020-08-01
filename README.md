@@ -54,7 +54,7 @@ You can add some actions in this callback with the tapped hashTag.
 
 
 
-## Customize hashTag features with useful functions
+## Customize your own hashTag features with some useful functions
 
 - Check if the text has hashTags
 ```dart
