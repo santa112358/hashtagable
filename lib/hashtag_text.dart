@@ -12,15 +12,15 @@ class HashTagText extends StatelessWidget {
       @required this.basicStyle,
       @required this.decoratedStyle,
       this.onTap,
-      this.textAlign,
+      this.textAlign = TextAlign.start,
       this.textDirection,
-      this.softWrap,
-      this.overflow,
-      this.textScaleFactor,
+      this.softWrap = true,
+      this.overflow = TextOverflow.clip,
+      this.textScaleFactor = 1.0,
       this.maxLines,
       this.locale,
       this.strutStyle,
-      this.textWidthBasis,
+      this.textWidthBasis = TextWidthBasis.parent,
       this.textHeightBehavior});
 
   final String text;
