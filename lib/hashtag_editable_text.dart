@@ -1,170 +1,74 @@
-import 'package:flutter/material.dart';
-import 'package:hashtagable/decorator.dart';
-import 'package:provider/provider.dart';
+import 'dart:ui';
 
-import 'hint_text_controller.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:hashtagable/decorator.dart';
 
 /// Show decorated tagged text while user is inputting text.
 ///
 /// [decoratedStyle] is textStyle of tagged text.
 /// [basicStyle] is textStyle of others.
-class HashTagEditableText extends StatelessWidget {
-  HashTagEditableText({
-    Key key,
-    this.controller,
-    this.basicStyle,
-    this.decoratedStyle,
-    this.onChanged,
-    this.onSubmitted,
-    this.cursorColor,
-    this.focusNode,
-    this.maxLines,
-    this.minLines,
-    this.keyboardType,
-    this.autofocus,
-    this.hintText,
-    this.hintTextStyle,
-  });
-
-  final TextEditingController controller;
-  final TextStyle basicStyle;
-  final TextStyle decoratedStyle;
-  final ValueChanged<String> onChanged;
-  final ValueChanged<String> onSubmitted;
-  final Color cursorColor;
-  final FocusNode focusNode;
-  final int maxLines;
-  final int minLines;
-  final TextInputType keyboardType;
-  final bool autofocus;
-  final String hintText;
-  final TextStyle hintTextStyle;
-
-  @override
-  Widget build(BuildContext context) {
-    return (hintText != null)
-        ? ChangeNotifierProvider(
-            create: (_) => HintTextController(),
-            child: Stack(
-              children: [
-                _HintText(hintText, hintTextStyle),
-                _Body(
-                  controller: this.controller,
-                  onSubmitted: this.onSubmitted,
-                  onChanged: this.onChanged,
-                  maxLines: this.maxLines,
-                  keyboardType: this.keyboardType,
-                  key: this.key,
-                  focusNode: this.focusNode,
-                  cursorColor: this.cursorColor,
-                  autofocus: this.autofocus,
-                  basicStyle: this.basicStyle,
-                  decoratedStyle: this.decoratedStyle,
-                ),
-              ],
-            ),
-          )
-        : _Body(
-            controller: this.controller,
-            onSubmitted: this.onSubmitted,
-            onChanged: this.onChanged,
-            maxLines: this.maxLines,
-            keyboardType: this.keyboardType,
-            key: this.key,
-            focusNode: this.focusNode,
-            cursorColor: this.cursorColor,
-            autofocus: this.autofocus,
-            basicStyle: this.basicStyle,
-            decoratedStyle: this.decoratedStyle,
-          );
-  }
-}
-
-class _Body extends StatelessWidget {
-  _Body({
-    Key key,
-    this.controller,
-    this.basicStyle,
-    this.decoratedStyle,
-    this.onChanged,
-    this.onSubmitted,
-    this.cursorColor,
-    this.focusNode,
-    this.maxLines,
-    this.minLines,
-    this.keyboardType,
-    this.autofocus,
-  });
-
-  final TextEditingController controller;
-  final TextStyle basicStyle;
-  final TextStyle decoratedStyle;
-  final ValueChanged<String> onChanged;
-  final ValueChanged<String> onSubmitted;
-  final Color cursorColor;
-  final FocusNode focusNode;
-  final int maxLines;
-  final int minLines;
-  final TextInputType keyboardType;
-  final bool autofocus;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return _EditableText(
-      controller: controller ?? TextEditingController(),
-      basicStyle: decoratedStyle ?? theme.textTheme.bodyText2,
-      decoratedStyle: basicStyle ??
-          theme.textTheme.bodyText2.copyWith(color: theme.accentColor),
-      onChanged: (text) {
-        Provider.of<HintTextController>(context, listen: false)
-            .onChanged(onChanged, text);
-      },
-      onSubmitted: onSubmitted,
-      cursorColor: cursorColor ?? theme.cursorColor,
-      focusNode: focusNode,
-      maxLines: maxLines,
-      keyboardType: keyboardType,
-      autofocus: autofocus,
-    );
-  }
-}
-
-/// TextWidget to show hintText
-///
-/// Its visibility is controlled by [HintTextController]
-class _HintText extends StatelessWidget {
-  final String text;
-  final TextStyle textStyle;
-
-  _HintText(this.text, this.textStyle);
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return Provider.of<HintTextController>(context).isContentEmpty
-        ? Text(text ?? "",
-            style: textStyle ??
-                theme.textTheme.bodyText2.copyWith(color: theme.hintColor))
-        : const SizedBox.shrink();
-  }
-}
-
 /// EditableText which decorates the contents start with "#"
-class _EditableText extends EditableText {
-  _EditableText({
+class HashTagEditableText extends EditableText {
+  HashTagEditableText({
     Key key,
     FocusNode focusNode,
     @required TextEditingController controller,
     @required TextStyle basicStyle,
+    @required this.decoratedStyle,
+    @required Color cursorColor,
     ValueChanged<String> onChanged,
     ValueChanged<String> onSubmitted,
-    @required Color cursorColor,
     int maxLines,
     int minLines,
     TextInputType keyboardType,
     bool autofocus,
-    @required this.decoratedStyle,
+    bool obscureText = false,
+    bool readOnly = false,
+    bool forceLine = true,
+    ToolbarOptions toolbarOptions = const ToolbarOptions(
+      copy: true,
+      cut: true,
+      paste: true,
+      selectAll: true,
+    ),
+    bool autocorrect = true,
+    SmartDashesType smartDashesType,
+    SmartQuotesType smartQuotesType,
+    bool enableSuggestions = true,
+    StrutStyle strutStyle,
+    TextAlign textAlign = TextAlign.start,
+    TextDirection textDirection,
+    TextCapitalization textCapitalization = TextCapitalization.none,
+    Locale locale,
+    double textScaleFactor,
+    bool expands = false,
+    Color selectionColor,
+    TextSelectionControls selectionControls,
+    TextInputAction textInputAction,
+    VoidCallback onEditingComplete,
+    SelectionChangedCallback onSelectionChanged,
+    VoidCallback onSelectionHandleTapped,
+    List<TextInputFormatter> inputFormatters,
+    double cursorWidth = 2.0,
+    Radius cursorRadius,
+    bool cursorOpacityAnimates = false,
+    Offset cursorOffset,
+    bool paintCursorAboveText = false,
+    BoxHeightStyle selectionHeightStyle = BoxHeightStyle.tight,
+    BoxWidthStyle selectionWidthStyle = BoxWidthStyle.tight,
+    Brightness keyboardAppearance = Brightness.light,
+    EdgeInsets scrollPadding = const EdgeInsets.all(20.0),
+    DragStartBehavior dragStartBehavior = DragStartBehavior.start,
+    ScrollController scrollController,
+    ScrollPhysics scrollPhysics,
+    bool showCursor,
+    bool showSelectionHandles = false,
+    bool rendererIgnoresPointer = true,
+    Color backgroundCursorColor = CupertinoColors.inactiveGray,
+    bool enableInteractiveSelection = true,
   }) : super(
           key: key,
           focusNode: (focusNode) ?? FocusNode(),
@@ -172,27 +76,64 @@ class _EditableText extends EditableText {
           cursorColor: cursorColor,
           style: basicStyle,
           keyboardType: (keyboardType) ?? TextInputType.text,
-          autocorrect: false,
           autofocus: (autofocus) ?? false,
           onChanged: onChanged,
           onSubmitted: onSubmitted,
-          backgroundCursorColor: Colors.white,
+          backgroundCursorColor: backgroundCursorColor,
           maxLines: maxLines,
           minLines: minLines,
+          obscureText: obscureText,
+          readOnly: readOnly,
+          forceLine: forceLine,
+          toolbarOptions: toolbarOptions,
+          autocorrect: autocorrect ?? false,
+          smartDashesType: smartDashesType,
+          smartQuotesType: smartQuotesType,
+          enableSuggestions: enableSuggestions ?? false,
+          strutStyle: strutStyle,
+          textAlign: textAlign,
+          textDirection: textDirection,
+          textCapitalization: textCapitalization,
+          locale: locale,
+          textScaleFactor: textScaleFactor,
+          expands: expands,
+          selectionColor: selectionColor,
+          selectionControls: selectionControls,
+          textInputAction: textInputAction,
+          onEditingComplete: onEditingComplete,
+          onSelectionChanged: onSelectionChanged,
+          onSelectionHandleTapped: onSelectionHandleTapped,
+          inputFormatters: inputFormatters,
+          cursorWidth: cursorWidth,
+          cursorRadius: cursorRadius,
+          cursorOpacityAnimates: cursorOpacityAnimates,
+          cursorOffset: cursorOffset,
+          paintCursorAboveText: paintCursorAboveText,
+          selectionHeightStyle: selectionHeightStyle,
+          selectionWidthStyle: selectionWidthStyle,
+          keyboardAppearance: keyboardAppearance,
+          scrollPadding: scrollPadding,
+          dragStartBehavior: dragStartBehavior,
+          scrollController: scrollController,
+          scrollPhysics: scrollPhysics,
+          showCursor: showCursor,
+          showSelectionHandles: showSelectionHandles,
+          rendererIgnoresPointer: rendererIgnoresPointer,
+          enableInteractiveSelection: enableInteractiveSelection,
         );
 
   final TextStyle decoratedStyle;
 
   @override
-  _EditableTextState createState() => _EditableTextState();
+  HashTagEditableTextState createState() => HashTagEditableTextState();
 }
 
 /// State of _EditableText
 ///
 /// Return decorated tagged text by using functions in [Decorator]
-class _EditableTextState extends EditableTextState {
+class HashTagEditableTextState extends EditableTextState {
   @override
-  _EditableText get widget => super.widget;
+  HashTagEditableText get widget => super.widget;
 
   Decorator decorator;
 
