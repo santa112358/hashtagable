@@ -128,7 +128,7 @@ class HashTagEditableText extends EditableText {
   HashTagEditableTextState createState() => HashTagEditableTextState();
 }
 
-/// State of _EditableText
+/// State of [HashTagEditableText]
 ///
 /// Return decorated tagged text by using functions in [Decorator]
 class HashTagEditableTextState extends EditableTextState {
