@@ -12,22 +12,18 @@ Decorates the words start with `#` like a Twitter.
 
 ## Usage
 
-- **As InputText**
+- **As TextField**
 
-You can use `HashTagEditableText` to decorate input text.
+You can use `HashTagTextField` to decorate input text.
 ```dart
-    HashTagEditableText(
-      controller: _textEditingController,
-      cursorColor: Theme.of(context).cursorColor,
-      basicStyle: TextStyle(fontSize: 14,color:Colors.black),
-      focusNode: FocusNode(),
-      onChanged: (_) {},
-      onSubmitted: (_) {},
-      decoratedStyle: TextStyle(fontSize: 14,color:Colors.red),
-      hintText: "Type Here"
+    HashTagTextField(
+    decoratedStyle: TextStyle(fontSize: 14, color: Colors.blue),
+    basicStyle: TextStyle(fontSize: 14, color: Colors.black),
     ),
 ```
 `decoratedStyle` is the textStyle of tagged text. `basicStyle` is for untagged text.
+
+Other arguments are basically same as those of material `TextField`
 
 
 

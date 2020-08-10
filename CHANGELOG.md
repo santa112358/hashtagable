@@ -1,3 +1,6 @@
+## 1.0.0
+* Implement `HashTagTextField`
+
 ## 0.1.2
 * Fix bugs in `HashTagText`
 
