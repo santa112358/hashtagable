@@ -128,6 +128,9 @@ class _TextFieldSelectionGestureDetectorBuilder
   }
 }
 
+/// TextField which decorates hashTag text.
+///
+/// Using [HashTagEditableText] insted of [EditableText] to enable hashTag decoration.
 class HashTagTextField extends StatefulWidget {
   const HashTagTextField({
     Key key,
