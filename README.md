@@ -17,11 +17,12 @@ Decorates the words start with `#` like a Twitter.
 You can use `HashTagTextField` to decorate input text.
 ```dart
     HashTagTextField(
-    basicStyle: TextStyle(fontSize: 14, color: Colors.black),
     decoratedStyle: TextStyle(fontSize: 14, color: Colors.blue),
+    basicStyle: TextStyle(fontSize: 14, color: Colors.black),
     ),
 ```
 `decoratedStyle` is the textStyle of tagged text. `basicStyle` is for untagged text.
+
 Other arguments are basically same as those of material `TextField`
 
 
@@ -35,8 +36,8 @@ If you want to decorate the text only to display, `HashTagText` will help you.
 ```dart
     HashTagText(
         text: "#Hello world. Hello #world",
-        basicStyle: TextStyle(fontSize: 14,color:Colors.black),
         decoratedStyle: TextStyle(fontSize: 14,color:Colors.red),
+        basicStyle: TextStyle(fontSize: 14,color:Colors.black),
         onTap: (text) {
           print(text);
         },
