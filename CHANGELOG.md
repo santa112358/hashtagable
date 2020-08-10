@@ -1,3 +1,6 @@
+## 0.1.2
+* Fix bugs in `HashTagText`
+
 ## 0.1.1
 * Add a Widget `HashTagText` to implement tagged text only to be shown.
 * Add detail documentation. 
