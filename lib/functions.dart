@@ -1,7 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:hashtagable/decorator.dart';
-import 'package:hashtagable/hashtag_text.dart';
+import 'package:hashtagable/widgets/hashtag_text.dart';
+
+import 'decorator/decorator.dart';
 
 /// Check if the text has hashTags
 bool hasHashTags(String value) {

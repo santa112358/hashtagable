@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'hashtag_regular_expression.dart';
 
 /// DataModel to explain the unit of word in decoration system
 class Decoration extends Comparable<Decoration> {
@@ -20,10 +21,6 @@ class Decoration extends Comparable<Decoration> {
 class Decorator {
   final TextStyle textStyle;
   final TextStyle decoratedStyle;
-  static final hashTagRegExp = RegExp(
-    "(?!\\n)(?:^|\\s)(#([·・ー_ぁ-んァ-ンa-zA-Z0-9一-龠０-９ａ-ｚＡ-ＺáàãâéêíóôõúüçÁÀÃÂÉÊÍÓÔÕÚÜÇ]+))",
-    multiLine: true,
-  );
 
   Decorator({this.textStyle, this.decoratedStyle});
 
