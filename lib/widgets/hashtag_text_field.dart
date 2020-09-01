@@ -11,7 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:hashtagable/hashtag_editable_text.dart';
+
+import 'hashtag_editable_text.dart';
 
 export 'package:flutter/services.dart'
     show
