@@ -71,15 +71,15 @@ You can add some actions in this callback with the tapped hashTag.
 
 ## Tips
 
-The decoration rules are almost same as twitter. It does not decorate the tags which contain emoji or symbol.
+- The decoration rules are almost same as twitter. It does not decorate the tags which contain emoji or symbol.
 It needs space before `#` to decorate.
 
 
 <img src="https://user-images.githubusercontent.com/43510799/76335013-3c0c1f80-6337-11ea-8047-745082c52df4.png" width = "265"/>
 
-Supported Languages: English, Japanese, Spanish, Arabic, and Thai. 
+- Supported Languages are English, Japanese, Spanish, Arabic, and Thai. 
 
-If you have any requests or questions, please create a new issue on [github](https://github.com/santa112358/hashtagable/issues).
+If you have any requests or questions, please feel free to create a new issue on [github](https://github.com/santa112358/hashtagable/issues).
 
 
 ***
