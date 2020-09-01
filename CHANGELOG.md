@@ -1,3 +1,6 @@
+## 1.0.1
+* Support Arabic and Thai
+
 ## 1.0.0
 * Implement `HashTagTextField`
 
