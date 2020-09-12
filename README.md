@@ -9,7 +9,6 @@ Widgets and functions to implement hashTag decorated text.
 Decorates the words start with `#` like a Twitter.
 
 ![RPReplay_Final1599932903](https://user-images.githubusercontent.com/43510799/93001716-1d981280-f56c-11ea-8700-f181f7850455.gif)
-![result](https://user-images.githubusercontent.com/43510799/76334550-88a32b00-6336-11ea-8209-baa65ede1ca1.gif)
 
 ## Usage
 
