@@ -29,10 +29,10 @@ class _MyAppState extends State<MyApp> {
                   decoratedStyle: TextStyle(fontSize: 22, color: Colors.red),
                   textAlign: TextAlign.center,
                 ),
-//              HashTagTextField(
-//                basicStyle: TextStyle(fontSize: 15, color: Colors.black),
-//                decoratedStyle: TextStyle(fontSize: 15, color: Colors.blue),
-//              ),
+                HashTagTextField(
+                  basicStyle: TextStyle(fontSize: 15, color: Colors.black),
+                  decoratedStyle: TextStyle(fontSize: 15, color: Colors.blue),
+                ),
               ],
             ),
           ),
