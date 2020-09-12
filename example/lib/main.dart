@@ -17,20 +17,24 @@ class _MyAppState extends State<MyApp> {
       home: Scaffold(
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              /// Tagged text only to be shown
-              HashTagText(
-                text: "#Hello world. Hello #world",
-                basicStyle: TextStyle(fontSize: 14, color: Colors.black),
-                decoratedStyle: TextStyle(fontSize: 14, color: Colors.red),
-              ),
-              HashTagTextField(
-                basicStyle: TextStyle(fontSize: 15, color: Colors.black),
-                decoratedStyle: TextStyle(fontSize: 15, color: Colors.blue),
-              ),
-            ],
+          child: Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                /// Tagged text only to be shown
+                HashTagText(
+                  text: "#Welcome to #hashtagable\n This is #ReadOnlyText",
+                  basicStyle: TextStyle(fontSize: 22, color: Colors.black),
+                  decoratedStyle: TextStyle(fontSize: 22, color: Colors.red),
+                  textAlign: TextAlign.center,
+                ),
+                HashTagTextField(
+                  basicStyle: TextStyle(fontSize: 15, color: Colors.black),
+                  decoratedStyle: TextStyle(fontSize: 15, color: Colors.blue),
+                ),
+              ],
+            ),
           ),
         ),
       ),
