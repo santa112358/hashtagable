@@ -2,12 +2,13 @@
 # hashtagable 
 
 [![test](https://github.com/santa112358/hashtagable/workflows/test/badge.svg)](https://github.com/santa112358/hashtagable/actions?query=workflow%3Atest) [![pub package](https://img.shields.io/pub/v/hashtagable.svg)](https://pub.dev/packages/hashtagable)
+<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-purple.svg" alt="License: MIT"></a>
 
 Widgets and functions to implement hashTag decorated text.
 
 Decorates the words start with `#` like a Twitter.
 
-
+![RPReplay_Final1599932903](https://user-images.githubusercontent.com/43510799/93001716-1d981280-f56c-11ea-8700-f181f7850455.gif)
 ![result](https://user-images.githubusercontent.com/43510799/76334550-88a32b00-6336-11ea-8209-baa65ede1ca1.gif)
 
 ## Usage
@@ -71,15 +72,30 @@ You can add some actions in this callback with the tapped hashTag.
 
 ## Tips
 
+- If you also want to decorate At sign, you can do that by adding the argument `decorateAtSign: true`.
+```dart
+    HashTagText(
+        text: "#Hello World @flutter_developers",
+        decoratedStyle: TextStyle(fontSize: 14,color:Colors.red),
+        basicStyle: TextStyle(fontSize: 14,color:Colors.black),
+        onTap: (text) {
+          print(text);
+        },
+        decorateAtSign: true,
+    )
+```
+Then `HashTagText` and `HashtagTextField` come to decorate the words start with `#` or `@`.
+
+
 - The decoration rules are almost same as twitter. It does not decorate the tags which contain emoji or symbol.
-It needs space before `#` to decorate.
+It needs space before `#` (or `@`) to decorate.
 
 
 <img src="https://user-images.githubusercontent.com/43510799/76335013-3c0c1f80-6337-11ea-8047-745082c52df4.png" width = "265"/>
 
 - Supported Languages are English, Japanese, Spanish, Arabic, and Thai. 
 
-If you have any requests or questions, please feel free to create a new issue on [github](https://github.com/santa112358/hashtagable/issues).
+If you have any requests or questions, please feel free to ask on [github](https://github.com/santa112358/hashtagable/issues).
 
 
 ***
