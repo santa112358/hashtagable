@@ -32,7 +32,6 @@ Other arguments are basically same as those of material `TextField`
 - **As ReadOnlyText**
 
 <img src ="https://user-images.githubusercontent.com/43510799/93002100-33f39d80-f56f-11ea-9855-83f2c095a1c4.jpg" width = "265"/>
-<img src="https://user-images.githubusercontent.com/43510799/76335010-3a425c00-6337-11ea-98ed-d0bbf1cd4590.png" width = "265"/>
 
 If you want to decorate the text only to display, `HashTagText` will help you.
 ```dart
@@ -92,7 +91,6 @@ Then `HashTagText` and `HashtagTextField` come to decorate the words start with 
 It needs space before `#` (or `@`) to decorate.
 
 <img src ="https://user-images.githubusercontent.com/43510799/93002102-3655f780-f56f-11ea-8193-1753a69e23bc.jpg" width = "265"/>
-<img src="https://user-images.githubusercontent.com/43510799/76335013-3c0c1f80-6337-11ea-8047-745082c52df4.png" width = "265"/>
 
 - Supported Languages are English, Japanese, Spanish, Arabic, and Thai. 
 
