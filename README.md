@@ -42,11 +42,14 @@ If you want to decorate the text only to display, `HashTagText` will help you.
     )
 ```
 
-<img src ="https://user-images.githubusercontent.com/43510799/93002100-33f39d80-f56f-11ea-9855-83f2c095a1c4.jpg" width = "265"/>
-
 The argument `onTap(String)` is called when user tapped a hashTag. 
 
 You can add some actions in this callback with the tapped hashTag.
+
+
+<img src ="https://user-images.githubusercontent.com/43510799/93002100-33f39d80-f56f-11ea-9855-83f2c095a1c4.jpg" width = "265"/>
+
+
 
 
 
