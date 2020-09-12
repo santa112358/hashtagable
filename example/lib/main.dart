@@ -23,8 +23,8 @@ class _MyAppState extends State<MyApp> {
               /// Tagged text only to be shown
               HashTagText(
                 text: "#Hello world. Hello #world",
-                basicStyle: TextStyle(fontSize: 14, color: Colors.red),
-                decoratedStyle: TextStyle(fontSize: 14, color: Colors.black),
+                basicStyle: TextStyle(fontSize: 14, color: Colors.black),
+                decoratedStyle: TextStyle(fontSize: 14, color: Colors.red),
               ),
               HashTagTextField(
                 basicStyle: TextStyle(fontSize: 15, color: Colors.black),

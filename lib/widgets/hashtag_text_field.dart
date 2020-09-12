@@ -136,6 +136,7 @@ class HashTagTextField extends StatefulWidget {
   const HashTagTextField({
     Key key,
     this.decoratedStyle,
+    this.decorateAtSign = false,
     this.controller,
     this.focusNode,
     this.decoration = const InputDecoration(),
@@ -229,6 +230,9 @@ class HashTagTextField extends StatefulWidget {
 
   /// TextStyle of hashTag
   final TextStyle decoratedStyle;
+
+  /// Decides if text with at sign(@) decorated
+  final bool decorateAtSign;
 
   /// Controls the text being edited.
   ///
@@ -909,6 +913,7 @@ class _HashTagTextFieldState extends State<HashTagTextField>
         key: editableTextKey,
         basicStyle: style,
         decoratedStyle: decoratedStyle,
+        decorateAtSign: widget.decorateAtSign,
         readOnly: widget.readOnly,
         toolbarOptions: widget.toolbarOptions,
         showCursor: widget.showCursor,

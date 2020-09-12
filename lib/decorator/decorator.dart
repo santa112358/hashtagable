@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+
 import 'hashtag_regular_expression.dart';
 
 /// DataModel to explain the unit of word in decoration system
@@ -21,8 +22,9 @@ class Decoration extends Comparable<Decoration> {
 class Decorator {
   final TextStyle textStyle;
   final TextStyle decoratedStyle;
+  final bool decorateAtSign;
 
-  Decorator({this.textStyle, this.decoratedStyle});
+  Decorator({this.textStyle, this.decoratedStyle, this.decorateAtSign = false});
 
   List<Decoration> _getSourceDecorations(
       List<RegExpMatch> tags, String copiedText) {
@@ -115,7 +117,9 @@ class Decorator {
           emojiMatch.start, emojiMatch.end, replacementText);
     });
 
-    final tags = hashTagRegExp.allMatches(copiedText).toList();
+    final regExp = decorateAtSign ? hashTagAtSignRegExp : hashTagRegExp;
+
+    final tags = regExp.allMatches(copiedText).toList();
     if (tags.isEmpty) {
       return [];
     }
