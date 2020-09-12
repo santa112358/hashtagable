@@ -11,6 +11,7 @@ class HashTagText extends StatelessWidget {
       {@required this.text,
       @required this.basicStyle,
       @required this.decoratedStyle,
+      this.decorateAtSign = false,
       this.onTap,
       this.textAlign = TextAlign.start,
       this.textDirection,
@@ -37,12 +38,14 @@ class HashTagText extends StatelessWidget {
   final StrutStyle strutStyle;
   final TextWidthBasis textWidthBasis;
   final TextHeightBehavior textHeightBehavior;
+  final bool decorateAtSign;
 
   @override
   Widget build(BuildContext context) {
     return RichText(
       text: getHashTagTextSpan(
           decoratedStyle: decoratedStyle,
+          decorateAtSign: decorateAtSign,
           basicStyle: basicStyle,
           onTap: onTap,
           source: text),

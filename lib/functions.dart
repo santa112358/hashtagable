@@ -37,14 +37,18 @@ List<String> extractHashTags(String value) {
 /// Returns textSpan with decorated tagged text
 ///
 /// Used in [HashTagText]
-TextSpan getHashTagTextSpan(
-    {@required TextStyle decoratedStyle,
-    @required TextStyle basicStyle,
-    @required String source,
-    @required Function(String) onTap}) {
-  final decorations =
-      Decorator(decoratedStyle: decoratedStyle, textStyle: basicStyle)
-          .getDecorations(source);
+TextSpan getHashTagTextSpan({
+  @required TextStyle decoratedStyle,
+  @required TextStyle basicStyle,
+  @required String source,
+  @required Function(String) onTap,
+  bool decorateAtSign = false,
+}) {
+  final decorations = Decorator(
+          decoratedStyle: decoratedStyle,
+          textStyle: basicStyle,
+          decorateAtSign: decorateAtSign)
+      .getDecorations(source);
   if (decorations.isEmpty) {
     return TextSpan(text: source, style: basicStyle);
   } else {

@@ -19,6 +19,7 @@ class HashTagEditableText extends EditableText {
     @required TextStyle basicStyle,
     @required this.decoratedStyle,
     @required Color cursorColor,
+    this.decorateAtSign,
     ValueChanged<String> onChanged,
     ValueChanged<String> onSubmitted,
     int maxLines,
@@ -124,6 +125,8 @@ class HashTagEditableText extends EditableText {
 
   final TextStyle decoratedStyle;
 
+  final decorateAtSign;
+
   @override
   HashTagEditableTextState createState() => HashTagEditableTextState();
 }
@@ -140,7 +143,9 @@ class HashTagEditableTextState extends EditableTextState {
   @override
   void initState() {
     decorator = Decorator(
-        textStyle: widget.style, decoratedStyle: widget.decoratedStyle);
+        textStyle: widget.style,
+        decoratedStyle: widget.decoratedStyle,
+        decorateAtSign: widget.decorateAtSign);
     super.initState();
   }
 
