@@ -1,3 +1,7 @@
+## 1.0.2
+* Update readme sample code and images
+* Add At sign decoration
+
 ## 1.0.1
 * Support Arabic and Thai
 
