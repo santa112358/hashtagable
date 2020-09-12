@@ -35,9 +35,9 @@ Other arguments are basically same as those of material `TextField`
 If you want to decorate the text only to display, `HashTagText` will help you.
 ```dart
     HashTagText(
-        text: "#Hello world. Hello #world",
-        decoratedStyle: TextStyle(fontSize: 14,color:Colors.red),
-        basicStyle: TextStyle(fontSize: 14,color:Colors.black),
+        text: "#Welcome to #hashtagable \n This is #ReadOnlyText",
+        decoratedStyle: TextStyle(fontSize: 22,color:Colors.red),
+        basicStyle: TextStyle(fontSize: 22,color:Colors.black),
         onTap: (text) {
           print(text);
         },
