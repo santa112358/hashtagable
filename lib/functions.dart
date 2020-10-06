@@ -66,7 +66,7 @@ TextSpan getHashTagTextSpan({
                   ..onTap = () {
                     final decoration = decorations[index];
                     if (decoration.style == decoratedStyle) {
-                      onTap(decoration.range.textInside(source));
+                      onTap(decoration.range.textInside(source).trim());
                     }
                   },
               ),
