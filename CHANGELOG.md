@@ -6,15 +6,19 @@
 * Add At sign decoration
 
 ## 1.0.1
+
 * Support Arabic and Thai
 
 ## 1.0.0
+
 * Implement `HashTagTextField`
 
 ## 0.1.2
+
 * Fix bugs in `HashTagText`
 
 ## 0.1.1
+
 * Add a Widget `HashTagText` to implement tagged text only to be shown.
 * Add detail documentation. 
 
