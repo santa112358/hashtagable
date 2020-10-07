@@ -1,3 +1,6 @@
+## 1.0.3
+* Fix the argument of onTap method
+
 ## 1.0.2
 * Update readme sample code and images
 * Add At sign decoration
