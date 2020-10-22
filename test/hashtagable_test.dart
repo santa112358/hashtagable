@@ -29,6 +29,15 @@ void main() {
     expect(decorator.getDecorations(source).isEmpty, true);
   });
 
+  test("Decorated text including Korean letters", () {
+    final source = "#안녕 #안녕하세요 #감사 합니다";
+    final result = decorator.getDecorations(source);
+    final decoratedResult =
+        result.where((item) => item.style.color == decoratedColor).toList();
+    expect(decoratedResult.length, 3);
+    expect(decorator.getDecorations(source)[3].style.color, undecoratedColor);
+  });
+
   test(
       "When source consists of [untagged, tagged], split it and decorate the tagged one",
       () {
