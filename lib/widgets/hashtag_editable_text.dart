@@ -1,10 +1,14 @@
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hashtagable/decorator/decorator.dart';
+
+int _obscureShowCharTicksPending = 0;
+int _obscureLatestCharIndex;
 
 /// Show decorated tagged text while user is inputting text.
 ///
@@ -154,15 +158,112 @@ class HashTagEditableTextState extends EditableTextState {
     final String sourceText = textEditingValue.text;
     final decorations = decorator.getDecorations(sourceText);
     if (decorations.isEmpty) {
-      return TextSpan(text: sourceText, style: widget.style);
+      return widget.controller.buildTextSpan(
+        style: widget.style,
+        withComposing: !widget.readOnly,
+      );
     } else {
       decorations.sort();
-      final span = decorations.map((item) {
-        return TextSpan(
-            style: item.style, text: item.range.textInside(sourceText));
-      }).toList();
+      final composing = widget.controller.value.composing;
+      final span = decorations.map(
+        (item) {
+          final spanRange = item.range;
+          final spanStyle = item.style;
+          final underlinedStyle =
+              spanStyle.copyWith(decoration: TextDecoration.underline);
+          if (spanRange.start <= composing.start &&
+              spanRange.end >= composing.end) {
+            return TextSpan(
+              children: [
+                TextSpan(
+                    text:
+                        TextRange(start: spanRange.start, end: composing.start)
+                            .textInside(sourceText),
+                    style: spanStyle),
+                TextSpan(
+                    text: TextRange(start: composing.start, end: composing.end)
+                        .textInside(sourceText),
+                    style: underlinedStyle),
+                TextSpan(
+                    text: TextRange(start: composing.end, end: spanRange.end)
+                        .textInside(sourceText),
+                    style: spanStyle),
+              ],
+            );
+          } else if (spanRange.start >= composing.start &&
+              spanRange.end >= composing.end &&
+              spanRange.start <= composing.end) {
+            return TextSpan(children: [
+              TextSpan(
+                  text: TextRange(start: spanRange.start, end: composing.end)
+                      .textInside(sourceText),
+                  style: underlinedStyle),
+              TextSpan(
+                  text: TextRange(start: composing.end, end: spanRange.end)
+                      .textInside(sourceText),
+                  style: spanStyle)
+            ]);
+          } else if (spanRange.start <= composing.start &&
+              spanRange.end <= composing.end &&
+              spanRange.end >= composing.start) {
+            return TextSpan(
+              children: [
+                TextSpan(
+                    text:
+                        TextRange(start: spanRange.start, end: composing.start)
+                            .textInside(sourceText),
+                    style: spanStyle),
+                TextSpan(
+                    text: TextRange(start: composing.start, end: spanRange.end)
+                        .textInside(sourceText),
+                    style: underlinedStyle),
+              ],
+            );
+          } else {
+            return TextSpan(
+                text: spanRange.textInside(sourceText), style: spanStyle);
+          }
+        },
+      ).toList();
+      // final span = decorations
+      //     .asMap()
+      //     .map(
+      //       (index, item) {
+      //         return MapEntry(
+      //           index,
+      //           composingDecoration(
+      //             style: item.style,
+      //             textRange: item.range,
+      //             text: item.range.textInside(sourceText),
+      //           ),
+      //         );
+      //         // return composingDecoration(
+      //         //     style: item.style,
+      //         //     textRange: item.range,
+      //         //     text: item.range.textInside(sourceText));
+      //         // return TextSpan(
+      //         //     style: item.style, text: item.range.textInside(sourceText));
+      //       },
+      //     )
+      //     .values
+      //     .toList();
 
       return TextSpan(children: span);
     }
+  }
+
+  TextSpan composingDecoration(
+      {TextStyle style, TextRange textRange, String text}) {
+    final value = widget.controller.value;
+    final withComposing = !widget.readOnly;
+    assert(!value.composing.isValid ||
+        !withComposing ||
+        value.isComposingRangeValid);
+    if (textRange.start > value.composing.start) {
+      return TextSpan(text: text, style: style);
+    } else if (textRange.end < value.composing.end) {}
+    final range1 =
+        TextRange(start: textRange.start, end: value.composing.start);
+    final range2 = TextRange(start: value.composing.start, end: textRange.end);
   }
 }
