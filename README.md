@@ -6,7 +6,7 @@
 
 Widgets and functions to implement hashTag decorated text.
 
-Decorates the words start with `#` like a Twitter.
+Detects the words start with `#` like a Twitter.
 
 ![RPReplay_Final1599932903](https://user-images.githubusercontent.com/43510799/93001716-1d981280-f56c-11ea-8700-f181f7850455.gif)
 
@@ -53,7 +53,7 @@ You can add some actions in this callback with the tapped hashTag.
 
 
 
-## Customize with some useful functions
+## Customize with useful functions
 
 - Check if the text has hashTags
 ```dart
