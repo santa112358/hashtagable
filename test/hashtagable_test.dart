@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hashtagable/decorator/decorator.dart';
 import 'package:hashtagable/functions.dart';
+import 'package:hashtagable/hashtagable.dart';
 
 void main() {
   final decoratedColor = Colors.red;
@@ -127,5 +128,10 @@ void main() {
     expect(hashTagList[1], "#Thank");
     expect(hashTagList[2], "#So");
     expect(hashTagList.length, 3);
+  });
+
+  test("detect hashtag before the full width space", () {
+    final source = "The space right before the hashtag is　#fullWidth";
+    expect(hasHashTags(source), true);
   });
 }

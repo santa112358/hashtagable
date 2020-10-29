@@ -104,7 +104,7 @@ class Decorator {
     final fullWidthRegExpMatches =
         fullWidthRegExp.allMatches(copiedText).toList();
     final tokenRegExp =
-        RegExp(r'[・ぁ-んーァ-ヶ一-龥\u1100-\u11FF\uAC00-\uD7A3０-９ａ-ｚＡ-Ｚ]');
+        RegExp(r'[・ぁ-んーァ-ヶ一-龥\u1100-\u11FF\uAC00-\uD7A3０-９ａ-ｚＡ-Ｚ　]');
     final emojiMatches = fullWidthRegExpMatches
         .where((match) => (!tokenRegExp
             .hasMatch(copiedText.substring(match.start, match.end))))
