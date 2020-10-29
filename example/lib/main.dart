@@ -28,14 +28,21 @@ class _MyAppState extends State<MyApp> {
                   basicStyle: TextStyle(fontSize: 22, color: Colors.black),
                   decoratedStyle: TextStyle(fontSize: 22, color: Colors.red),
                   textAlign: TextAlign.center,
+                  onTap: (text) {
+                    showDialog(
+                      builder: (context) => AlertDialog(
+                        title: Text(text),
+                      ),
+                    );
+                  },
                 ),
-                HashTagTextField(
-                  basicStyle: TextStyle(fontSize: 15, color: Colors.black),
-                  decoratedStyle: TextStyle(fontSize: 15, color: Colors.blue),
-                  keyboardType: TextInputType.multiline,
-                  maxLines: null,
-                ),
-                TextField(),
+                // HashTagTextField(
+                //   basicStyle: TextStyle(fontSize: 15, color: Colors.black),
+                //   decoratedStyle: TextStyle(fontSize: 15, color: Colors.blue),
+                //   keyboardType: TextInputType.multiline,
+                //   maxLines: null,
+                // ),
+                // TextField(),
               ],
             ),
           ),
