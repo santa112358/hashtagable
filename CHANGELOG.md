@@ -1,3 +1,7 @@
+## 1.0.5
+* Fix the bug not detects hashtag before full width space
+* Add composing underline
+
 ## 1.0.4
 * Support Korean
 
