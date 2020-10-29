@@ -7,9 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hashtagable/decorator/decorator.dart';
 
-int _obscureShowCharTicksPending = 0;
-int _obscureLatestCharIndex;
-
 /// Show decorated tagged text while user is inputting text.
 ///
 /// [decoratedStyle] is textStyle of tagged text.
@@ -225,45 +222,7 @@ class HashTagEditableTextState extends EditableTextState {
           }
         },
       ).toList();
-      // final span = decorations
-      //     .asMap()
-      //     .map(
-      //       (index, item) {
-      //         return MapEntry(
-      //           index,
-      //           composingDecoration(
-      //             style: item.style,
-      //             textRange: item.range,
-      //             text: item.range.textInside(sourceText),
-      //           ),
-      //         );
-      //         // return composingDecoration(
-      //         //     style: item.style,
-      //         //     textRange: item.range,
-      //         //     text: item.range.textInside(sourceText));
-      //         // return TextSpan(
-      //         //     style: item.style, text: item.range.textInside(sourceText));
-      //       },
-      //     )
-      //     .values
-      //     .toList();
-
       return TextSpan(children: span);
     }
-  }
-
-  TextSpan composingDecoration(
-      {TextStyle style, TextRange textRange, String text}) {
-    final value = widget.controller.value;
-    final withComposing = !widget.readOnly;
-    assert(!value.composing.isValid ||
-        !withComposing ||
-        value.isComposingRangeValid);
-    if (textRange.start > value.composing.start) {
-      return TextSpan(text: text, style: style);
-    } else if (textRange.end < value.composing.end) {}
-    final range1 =
-        TextRange(start: textRange.start, end: value.composing.start);
-    final range2 = TextRange(start: value.composing.start, end: textRange.end);
   }
 }
