@@ -57,18 +57,19 @@ TextSpan getHashTagTextSpan({
         .asMap()
         .map(
           (index, item) {
+            final recognizer = TapGestureRecognizer()
+              ..onTap = () {
+                final decoration = decorations[index];
+                if (decoration.style == decoratedStyle) {
+                  onTap(decoration.range.textInside(source).trim());
+                }
+              };
             return MapEntry(
               index,
               TextSpan(
                 style: item.style,
                 text: item.range.textInside(source),
-                recognizer: (onTap == null) ? null : TapGestureRecognizer()
-                  ..onTap = () {
-                    final decoration = decorations[index];
-                    if (decoration.style == decoratedStyle) {
-                      onTap(decoration.range.textInside(source).trim());
-                    }
-                  },
+                recognizer: (onTap == null) ? null : recognizer,
               ),
             );
           },
