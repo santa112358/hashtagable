@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hashtagable/decorator/decorator.dart' as decorator;
 
+/// Add composing to hashtag decorated text.
 class Composer {
   // TODO(Takahashi): Add test code for composing
   TextSpan getComposedTextSpan(
