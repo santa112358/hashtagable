@@ -41,7 +41,7 @@ TextSpan getHashTagTextSpan({
   @required TextStyle decoratedStyle,
   @required TextStyle basicStyle,
   @required String source,
-  @required Function(String) onTap,
+  Function(String) onTap,
   bool decorateAtSign = false,
 }) {
   final decorations = Decorator(
@@ -62,7 +62,7 @@ TextSpan getHashTagTextSpan({
               TextSpan(
                 style: item.style,
                 text: item.range.textInside(source),
-                recognizer: TapGestureRecognizer()
+                recognizer: (onTap == null) ? null : TapGestureRecognizer()
                   ..onTap = () {
                     final decoration = decorations[index];
                     if (decoration.style == decoratedStyle) {
