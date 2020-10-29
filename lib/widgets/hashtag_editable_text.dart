@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -154,14 +155,73 @@ class HashTagEditableTextState extends EditableTextState {
     final String sourceText = textEditingValue.text;
     final decorations = decorator.getDecorations(sourceText);
     if (decorations.isEmpty) {
-      return TextSpan(text: sourceText, style: widget.style);
+      return widget.controller.buildTextSpan(
+        style: widget.style,
+        withComposing: !widget.readOnly,
+      );
     } else {
       decorations.sort();
-      final span = decorations.map((item) {
-        return TextSpan(
-            style: item.style, text: item.range.textInside(sourceText));
-      }).toList();
-
+      final composing = widget.controller.value.composing;
+      final span = decorations.map(
+        (item) {
+          final spanRange = item.range;
+          final spanStyle = item.style;
+          final underlinedStyle =
+              spanStyle.copyWith(decoration: TextDecoration.underline);
+          if (spanRange.start <= composing.start &&
+              spanRange.end >= composing.end) {
+            return TextSpan(
+              children: [
+                TextSpan(
+                    text:
+                        TextRange(start: spanRange.start, end: composing.start)
+                            .textInside(sourceText),
+                    style: spanStyle),
+                TextSpan(
+                    text: TextRange(start: composing.start, end: composing.end)
+                        .textInside(sourceText),
+                    style: underlinedStyle),
+                TextSpan(
+                    text: TextRange(start: composing.end, end: spanRange.end)
+                        .textInside(sourceText),
+                    style: spanStyle),
+              ],
+            );
+          } else if (spanRange.start >= composing.start &&
+              spanRange.end >= composing.end &&
+              spanRange.start <= composing.end) {
+            return TextSpan(children: [
+              TextSpan(
+                  text: TextRange(start: spanRange.start, end: composing.end)
+                      .textInside(sourceText),
+                  style: underlinedStyle),
+              TextSpan(
+                  text: TextRange(start: composing.end, end: spanRange.end)
+                      .textInside(sourceText),
+                  style: spanStyle)
+            ]);
+          } else if (spanRange.start <= composing.start &&
+              spanRange.end <= composing.end &&
+              spanRange.end >= composing.start) {
+            return TextSpan(
+              children: [
+                TextSpan(
+                    text:
+                        TextRange(start: spanRange.start, end: composing.start)
+                            .textInside(sourceText),
+                    style: spanStyle),
+                TextSpan(
+                    text: TextRange(start: composing.start, end: spanRange.end)
+                        .textInside(sourceText),
+                    style: underlinedStyle),
+              ],
+            );
+          } else {
+            return TextSpan(
+                text: spanRange.textInside(sourceText), style: spanStyle);
+          }
+        },
+      ).toList();
       return TextSpan(children: span);
     }
   }
