@@ -32,7 +32,10 @@ class _MyAppState extends State<MyApp> {
                 HashTagTextField(
                   basicStyle: TextStyle(fontSize: 15, color: Colors.black),
                   decoratedStyle: TextStyle(fontSize: 15, color: Colors.blue),
+                  keyboardType: TextInputType.multiline,
+                  maxLines: null,
                 ),
+                TextField(),
               ],
             ),
           ),
