@@ -156,11 +156,13 @@ class HashTagEditableTextState extends EditableTextState {
     final String sourceText = textEditingValue.text;
     final decorations = decorator.getDecorations(sourceText);
     if (decorations.isEmpty) {
+      /// use same method as default textField to show composing underline
       return widget.controller.buildTextSpan(
         style: widget.style,
         withComposing: !widget.readOnly,
       );
     } else {
+      /// use [Composer] to show composing underline
       decorations.sort();
       final composing = widget.controller.value.composing;
       final composer = Composer();
