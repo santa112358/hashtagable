@@ -21,6 +21,7 @@ class HashTagEditableText extends EditableText {
     @required TextStyle basicStyle,
     @required this.decoratedStyle,
     @required Color cursorColor,
+    this.onDetectionTyped,
     this.decorateAtSign,
     ValueChanged<String> onChanged,
     ValueChanged<String> onSubmitted,
@@ -125,6 +126,8 @@ class HashTagEditableText extends EditableText {
           enableInteractiveSelection: enableInteractiveSelection,
         );
 
+  final ValueChanged<String> onDetectionTyped;
+
   final TextStyle decoratedStyle;
 
   final decorateAtSign;
@@ -167,6 +170,7 @@ class HashTagEditableTextState extends EditableTextState {
       final composing = widget.controller.value.composing;
       final composer = Composer();
       return composer.getComposedTextSpan(
+        onDetectionTyped: widget.onDetectionTyped,
         composing: composing,
         decorations: decorations,
         sourceText: sourceText,

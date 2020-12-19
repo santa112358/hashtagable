@@ -8,15 +8,18 @@ class Composer {
   TextSpan getComposedTextSpan(
       {@required TextRange composing,
       @required List<decorator.Decoration> decorations,
-      @required sourceText}) {
+      @required sourceText,
+      @required ValueChanged<String> onDetectionTyped}) {
     final span = decorations.map(
       (item) {
         final spanRange = item.range;
         final spanStyle = item.style;
         final underlinedStyle =
             spanStyle.copyWith(decoration: TextDecoration.underline);
+        final spanText = item.range.textInside(sourceText);
         if (spanRange.start <= composing.start &&
             spanRange.end >= composing.end) {
+          onDetectionTyped?.call(spanText);
           return TextSpan(
             children: [
               TextSpan(
@@ -36,6 +39,7 @@ class Composer {
         } else if (spanRange.start >= composing.start &&
             spanRange.end >= composing.end &&
             spanRange.start <= composing.end) {
+          onDetectionTyped?.call(spanText);
           return TextSpan(children: [
             TextSpan(
                 text: TextRange(start: spanRange.start, end: composing.end)
@@ -49,6 +53,7 @@ class Composer {
         } else if (spanRange.start <= composing.start &&
             spanRange.end <= composing.end &&
             spanRange.end >= composing.start) {
+          onDetectionTyped?.call(spanText);
           return TextSpan(
             children: [
               TextSpan(
