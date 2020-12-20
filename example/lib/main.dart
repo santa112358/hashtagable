@@ -37,6 +37,8 @@ class _MyAppState extends State<MyApp> {
                   decoratedStyle: TextStyle(fontSize: 15, color: Colors.blue),
                   keyboardType: TextInputType.multiline,
                   maxLines: null,
+
+                  /// Called when detection (words start with #, or # and @) is being typed
                   onDetectionTyped: (text) {
                     print(text);
                   },
