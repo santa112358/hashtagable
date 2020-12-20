@@ -37,7 +37,11 @@ class _MyAppState extends State<MyApp> {
                   decoratedStyle: TextStyle(fontSize: 15, color: Colors.blue),
                   keyboardType: TextInputType.multiline,
                   maxLines: null,
+                  onDetectionTyped: (text) {
+                    print(text);
+                  },
                 ),
+                // TextField(),
               ],
             ),
           ),

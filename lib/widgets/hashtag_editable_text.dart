@@ -21,6 +21,7 @@ class HashTagEditableText extends EditableText {
     @required TextStyle basicStyle,
     @required this.decoratedStyle,
     @required Color cursorColor,
+    this.onDetectionTyped,
     this.decorateAtSign,
     ValueChanged<String> onChanged,
     ValueChanged<String> onSubmitted,
@@ -125,6 +126,8 @@ class HashTagEditableText extends EditableText {
           enableInteractiveSelection: enableInteractiveSelection,
         );
 
+  final ValueChanged<String> onDetectionTyped;
+
   final TextStyle decoratedStyle;
 
   final decorateAtSign;
@@ -164,13 +167,19 @@ class HashTagEditableTextState extends EditableTextState {
     } else {
       /// use [Composer] to show composing underline
       decorations.sort();
-      final composing = widget.controller.value.composing;
-      final composer = Composer();
-      return composer.getComposedTextSpan(
-        composing: composing,
-        decorations: decorations,
+      final composing = textEditingValue.composing;
+      final composer = Composer(
+        selection: textEditingValue?.selection?.start ?? -1,
+        onDetectionTyped: widget.onDetectionTyped,
         sourceText: sourceText,
+        decorations: decorations,
+        composing: composing,
+        decoratedStyle: widget.decoratedStyle,
       );
+      if (widget.onDetectionTyped != null) {
+        composer.callOnDetectionTyped();
+      }
+      return composer.getComposedTextSpan();
     }
   }
 }

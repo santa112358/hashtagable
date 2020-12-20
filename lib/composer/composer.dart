@@ -3,12 +3,27 @@ import 'package:flutter/material.dart';
 import 'package:hashtagable/decorator/decorator.dart' as decorator;
 
 /// Add composing to hashtag decorated text.
+///
+/// Expected to be used when Japanese letters are typed.
 class Composer {
+  Composer({
+    @required this.decorations,
+    @required this.composing,
+    @required this.sourceText,
+    @required this.onDetectionTyped,
+    @required this.selection,
+    @required this.decoratedStyle,
+  });
+
+  final List<decorator.Decoration> decorations;
+  final TextRange composing;
+  final String sourceText;
+  final ValueChanged<String> onDetectionTyped;
+  final int selection;
+  final TextStyle decoratedStyle;
+
   // TODO(Takahashi): Add test code for composing
-  TextSpan getComposedTextSpan(
-      {@required TextRange composing,
-      @required List<decorator.Decoration> decorations,
-      @required sourceText}) {
+  TextSpan getComposedTextSpan() {
     final span = decorations.map(
       (item) {
         final spanRange = item.range;
@@ -68,5 +83,20 @@ class Composer {
       },
     ).toList();
     return TextSpan(children: span);
+  }
+
+  void callOnDetectionTyped() {
+    final typingDecoration = decorations.firstWhere(
+      (decoration) =>
+          decoration.style == decoratedStyle &&
+          decoration.range.start <= selection &&
+          decoration.range.end >= selection,
+      orElse: () {
+        return null;
+      },
+    );
+    if (typingDecoration != null) {
+      onDetectionTyped(typingDecoration.range.textInside(sourceText));
+    }
   }
 }

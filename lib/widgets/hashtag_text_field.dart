@@ -136,6 +136,7 @@ class HashTagTextField extends StatefulWidget {
   const HashTagTextField({
     Key key,
     this.decoratedStyle,
+    this.onDetectionTyped,
     this.decorateAtSign = false,
     this.controller,
     this.focusNode,
@@ -227,6 +228,8 @@ class HashTagTextField extends StatefulWidget {
                     paste: true,
                   )),
         super(key: key);
+
+  final ValueChanged<String> onDetectionTyped;
 
   /// TextStyle of hashTag
   final TextStyle decoratedStyle;
@@ -914,6 +917,7 @@ class _HashTagTextFieldState extends State<HashTagTextField>
         basicStyle: style,
         decoratedStyle: decoratedStyle,
         decorateAtSign: widget.decorateAtSign,
+        onDetectionTyped: widget.onDetectionTyped,
         readOnly: widget.readOnly,
         toolbarOptions: widget.toolbarOptions,
         showCursor: widget.showCursor,
