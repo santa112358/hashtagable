@@ -1,6 +1,6 @@
 name: hashtagable
 description: Widgets and functions to implement hashtag decorated text. Decorates the words which start with `#` like a Twitter.
-version: 1.0.5+1
+version: 1.0.6
 author: Santa Takahashi <sun.jp.0212@gmail.com>
 homepage: https://github.com/santa112358/hashtagable
 repository: https://github.com/santa112358/hashtagable
