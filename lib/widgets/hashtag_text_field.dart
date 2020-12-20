@@ -917,6 +917,7 @@ class _HashTagTextFieldState extends State<HashTagTextField>
         basicStyle: style,
         decoratedStyle: decoratedStyle,
         decorateAtSign: widget.decorateAtSign,
+        onDetectionTyped: widget.onDetectionTyped,
         readOnly: widget.readOnly,
         toolbarOptions: widget.toolbarOptions,
         showCursor: widget.showCursor,

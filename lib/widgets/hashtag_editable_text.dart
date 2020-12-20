@@ -167,14 +167,19 @@ class HashTagEditableTextState extends EditableTextState {
     } else {
       /// use [Composer] to show composing underline
       decorations.sort();
-      final composing = widget.controller.value.composing;
-      final composer = Composer();
-      return composer.getComposedTextSpan(
+      final composing = textEditingValue.composing;
+      final composer = Composer(
+        selection: textEditingValue?.selection?.start ?? -1,
         onDetectionTyped: widget.onDetectionTyped,
-        composing: composing,
-        decorations: decorations,
         sourceText: sourceText,
+        decorations: decorations,
+        composing: composing,
+        decoratedStyle: widget.decoratedStyle,
       );
+      if (widget.onDetectionTyped != null) {
+        composer.callOnDetectionTyped();
+      }
+      return composer.getComposedTextSpan();
     }
   }
 }

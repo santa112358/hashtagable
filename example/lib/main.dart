@@ -29,12 +29,7 @@ class _MyAppState extends State<MyApp> {
                   decoratedStyle: TextStyle(fontSize: 22, color: Colors.red),
                   textAlign: TextAlign.center,
                   onTap: (text) {
-                    showDialog(
-                      context: context,
-                      builder: (context) => AlertDialog(
-                        title: Text(text),
-                      ),
-                    );
+                    print(text);
                   },
                 ),
                 HashTagTextField(
