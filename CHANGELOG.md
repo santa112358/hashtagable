@@ -1,3 +1,6 @@
+## 1.0.6
+* Add callback onDetectionTyped
+
 ## 1.0.5+1
 * Fix the bug that HashTagText does not work when onTap is null.
 

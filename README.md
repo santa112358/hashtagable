@@ -74,6 +74,8 @@ You can add some actions in this callback with the tapped hashTag.
 
 ## Tips
 
+- [DetectableTextField](https://pub.dev/packages/detectable_text_field) is published as a refinement of this package. hashtagale forces you to use hashtag, but this one allows you to detect anything you want.
+
 - If you also want to decorate At sign, you can do that by adding the argument `decorateAtSign: true`.
 ```dart
     HashTagText(
@@ -96,7 +98,6 @@ It needs space before `#` (or `@`) to decorate.
 
 - Supported Languages are English, Japanese, Korean, Spanish, Arabic, and Thai.
 
-- For more customization, [DetectableTextField](https://pub.dev/packages/detectable_text_field) is recommended. The package itself is almost same as hashtagable, but the target of detection is flexible.
 
 If you have any requests or questions, please feel free to ask on [github](https://github.com/santa112358/hashtagable/issues).
 
