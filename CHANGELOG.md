@@ -1,3 +1,6 @@
+## 1.0.6+1
+* Add Norwegian support
+
 ## 1.0.6
 * Add callback onDetectionTyped
 

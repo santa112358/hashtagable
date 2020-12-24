@@ -96,7 +96,7 @@ It needs space before `#` (or `@`) to decorate.
 
 <img src ="https://user-images.githubusercontent.com/43510799/93002102-3655f780-f56f-11ea-8193-1753a69e23bc.jpg" width = "265"/>
 
-- Supported Languages are English, Japanese, Korean, Spanish, Arabic, and Thai.
+- Supported Languages are English, Japanese, Korean, Spanish, Arabic, Thai, and Norwegian.
 
 
 If you have any requests or questions, please feel free to ask on [github](https://github.com/santa112358/hashtagable/issues).
