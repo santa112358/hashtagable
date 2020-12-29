@@ -38,12 +38,14 @@ class _MyAppState extends State<MyApp> {
                   keyboardType: TextInputType.multiline,
                   maxLines: null,
 
-                  /// Called when detection (words start with #, or # and @) is being typed
+                  /// Called when detection (word starts with #, or # and @) is being typed
                   onDetectionTyped: (text) {
                     print(text);
                   },
+
+                  /// Called when detection is fully typed
                   onDetectionFinished: () {
-                    print("finished");
+                    print("detection finished");
                   },
                 ),
                 // TextField(),
