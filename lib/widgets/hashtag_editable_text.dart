@@ -6,7 +6,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hashtagable/composer/composer.dart';
-import 'package:hashtagable/decorator/decorator.dart';
+import 'package:hashtagable/detector/detector.dart';
 
 /// Show decorated tagged text while user is inputting text.
 ///
@@ -22,6 +22,7 @@ class HashTagEditableText extends EditableText {
     @required this.decoratedStyle,
     @required Color cursorColor,
     this.onDetectionTyped,
+    this.onDetectionFinished,
     this.decorateAtSign,
     ValueChanged<String> onChanged,
     ValueChanged<String> onSubmitted,
@@ -128,6 +129,8 @@ class HashTagEditableText extends EditableText {
 
   final ValueChanged<String> onDetectionTyped;
 
+  final VoidCallback onDetectionFinished;
+
   final TextStyle decoratedStyle;
 
   final decorateAtSign;
@@ -138,27 +141,43 @@ class HashTagEditableText extends EditableText {
 
 /// State of [HashTagEditableText]
 ///
-/// Return decorated tagged text by using functions in [Decorator]
+/// Return decorated tagged text by using functions in [Detector]
 class HashTagEditableTextState extends EditableTextState {
   @override
   HashTagEditableText get widget => super.widget;
 
-  Decorator decorator;
+  Detector detector;
+
+  Detection prevTypingDetection;
 
   @override
   void initState() {
-    decorator = Decorator(
+    super.initState();
+    detector = Detector(
         textStyle: widget.style,
         decoratedStyle: widget.decoratedStyle,
         decorateAtSign: widget.decorateAtSign);
-    super.initState();
   }
 
   @override
   TextSpan buildTextSpan() {
-    final String sourceText = textEditingValue.text;
-    final decorations = decorator.getDecorations(sourceText);
-    if (decorations.isEmpty) {
+    final detections = detector.getDetections(textEditingValue.text);
+    final composer = Composer(
+      selection: textEditingValue?.selection?.start ?? -1,
+      onDetectionTyped: widget.onDetectionTyped,
+      sourceText: textEditingValue.text,
+      decoratedStyle: widget.decoratedStyle,
+      detections: detections,
+      composing: textEditingValue.composing,
+    );
+
+    final typingDetection = composer.typingDetection();
+    if (prevTypingDetection != null && typingDetection == null) {
+      widget.onDetectionFinished?.call();
+    }
+
+    prevTypingDetection = typingDetection;
+    if (detections.isEmpty) {
       /// use same method as default textField to show composing underline
       return widget.controller.buildTextSpan(
         style: widget.style,
@@ -166,16 +185,7 @@ class HashTagEditableTextState extends EditableTextState {
       );
     } else {
       /// use [Composer] to show composing underline
-      decorations.sort();
-      final composing = textEditingValue.composing;
-      final composer = Composer(
-        selection: textEditingValue?.selection?.start ?? -1,
-        onDetectionTyped: widget.onDetectionTyped,
-        sourceText: sourceText,
-        decorations: decorations,
-        composing: composing,
-        decoratedStyle: widget.decoratedStyle,
-      );
+      detections.sort();
       if (widget.onDetectionTyped != null) {
         composer.callOnDetectionTyped();
       }

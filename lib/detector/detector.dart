@@ -2,49 +2,49 @@ import 'package:flutter/cupertino.dart';
 
 import 'hashtag_regular_expression.dart';
 
-/// DataModel to explain the unit of word in decoration system
-class Decoration extends Comparable<Decoration> {
-  Decoration({@required this.range, this.style, this.emojiStartPoint});
+/// DataModel to explain the unit of word in detection system
+class Detection extends Comparable<Detection> {
+  Detection({@required this.range, this.style, this.emojiStartPoint});
 
   final TextRange range;
   final TextStyle style;
   final int emojiStartPoint;
 
   @override
-  int compareTo(Decoration other) {
+  int compareTo(Detection other) {
     return range.start.compareTo(other.range.start);
   }
 }
 
 /// Hold functions to decorate tagged text
 ///
-/// Return the list of [Decoration] in [getDecorations]
-class Decorator {
+/// Return the list of [Detection] in [getDetections]
+class Detector {
   final TextStyle textStyle;
   final TextStyle decoratedStyle;
   final bool decorateAtSign;
 
-  Decorator({this.textStyle, this.decoratedStyle, this.decorateAtSign = false});
+  Detector({this.textStyle, this.decoratedStyle, this.decorateAtSign = false});
 
-  List<Decoration> _getSourceDecorations(
+  List<Detection> _getSourceDetections(
       List<RegExpMatch> tags, String copiedText) {
     TextRange previousItem;
-    final result = List<Decoration>();
+    final result = List<Detection>();
     for (var tag in tags) {
       ///Add untagged content
       if (previousItem == null) {
         if (tag.start > 0) {
-          result.add(Decoration(
+          result.add(Detection(
               range: TextRange(start: 0, end: tag.start), style: textStyle));
         }
       } else {
-        result.add(Decoration(
+        result.add(Detection(
             range: TextRange(start: previousItem.end, end: tag.start),
             style: textStyle));
       }
 
       ///Add tagged content
-      result.add(Decoration(
+      result.add(Detection(
           range: TextRange(start: tag.start, end: tag.end),
           style: decoratedStyle));
       previousItem = TextRange(start: tag.start, end: tag.end);
@@ -52,7 +52,7 @@ class Decorator {
 
     ///Add remaining untagged content
     if (result.last.range.end < copiedText.length) {
-      result.add(Decoration(
+      result.add(Detection(
           range:
               TextRange(start: result.last.range.end, end: copiedText.length),
           style: textStyle));
@@ -61,17 +61,17 @@ class Decorator {
   }
 
   ///Decorate tagged content, filter out the ones includes emoji.
-  List<Decoration> _getEmojiFilteredDecorations(
-      {List<Decoration> source,
+  List<Detection> _getEmojiFilteredDetections(
+      {List<Detection> source,
       String copiedText,
       List<RegExpMatch> emojiMatches}) {
-    final result = List<Decoration>();
+    final result = List<Detection>();
     for (var item in source) {
       int emojiStartPoint;
       for (var emojiMatch in emojiMatches) {
-        final decorationContainsEmoji = (item.range.start < emojiMatch.start &&
+        final detectionContainsEmoji = (item.range.start < emojiMatch.start &&
             emojiMatch.end <= item.range.end);
-        if (decorationContainsEmoji) {
+        if (detectionContainsEmoji) {
           /// If the current Emoji's range.start is the smallest in the tag, update emojiStartPoint
           emojiStartPoint = (emojiStartPoint != null)
               ? ((emojiMatch.start < emojiStartPoint)
@@ -81,11 +81,11 @@ class Decorator {
         }
       }
       if (item.style == decoratedStyle && emojiStartPoint != null) {
-        result.add(Decoration(
+        result.add(Detection(
           range: TextRange(start: item.range.start, end: emojiStartPoint),
           style: decoratedStyle,
         ));
-        result.add(Decoration(
+        result.add(Detection(
             range: TextRange(start: emojiStartPoint, end: item.range.end),
             style: textStyle));
       } else {
@@ -96,7 +96,7 @@ class Decorator {
   }
 
   /// Return the list of decorations with tagged and untagged text
-  List<Decoration> getDecorations(String copiedText) {
+  List<Detection> getDetections(String copiedText) {
     /// Text to change emoji into replacement text
     final fullWidthRegExp = RegExp(
         r'(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])');
@@ -125,12 +125,12 @@ class Decorator {
       return [];
     }
 
-    final sourceDecorations = _getSourceDecorations(tags, copiedText);
+    final sourceDetections = _getSourceDetections(tags, copiedText);
 
-    final emojiFilteredResult = _getEmojiFilteredDecorations(
+    final emojiFilteredResult = _getEmojiFilteredDetections(
         copiedText: copiedText,
         emojiMatches: emojiMatches,
-        source: sourceDecorations);
+        source: sourceDetections);
 
     return emojiFilteredResult;
   }

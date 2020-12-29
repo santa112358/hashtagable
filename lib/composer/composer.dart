@@ -1,30 +1,30 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:hashtagable/decorator/decorator.dart' as decorator;
+import 'package:hashtagable/detector/detector.dart';
 
 /// Add composing to hashtag decorated text.
 ///
 /// Expected to be used when Japanese letters are typed.
 class Composer {
   Composer({
-    @required this.decorations,
-    @required this.composing,
     @required this.sourceText,
-    @required this.onDetectionTyped,
+    @required this.detections,
+    @required this.composing,
     @required this.selection,
     @required this.decoratedStyle,
+    @required this.onDetectionTyped,
   });
 
-  final List<decorator.Decoration> decorations;
-  final TextRange composing;
   final String sourceText;
-  final ValueChanged<String> onDetectionTyped;
+  final List<Detection> detections;
+  final TextRange composing;
   final int selection;
   final TextStyle decoratedStyle;
+  final ValueChanged<String> onDetectionTyped;
 
   // TODO(Takahashi): Add test code for composing
   TextSpan getComposedTextSpan() {
-    final span = decorations.map(
+    final span = detections.map(
       (item) {
         final spanRange = item.range;
         final spanStyle = item.style;
@@ -85,18 +85,22 @@ class Composer {
     return TextSpan(children: span);
   }
 
-  void callOnDetectionTyped() {
-    final typingDecoration = decorations.firstWhere(
-      (decoration) =>
-          decoration.style == decoratedStyle &&
-          decoration.range.start <= selection &&
-          decoration.range.end >= selection,
+  Detection typingDetection() {
+    return detections.firstWhere(
+      (detection) =>
+          detection.style == decoratedStyle &&
+          detection.range.start <= selection &&
+          detection.range.end >= selection,
       orElse: () {
         return null;
       },
     );
-    if (typingDecoration != null) {
-      onDetectionTyped(typingDecoration.range.textInside(sourceText));
+  }
+
+  void callOnDetectionTyped() {
+    final typingRange = typingDetection()?.range;
+    if (typingRange != null) {
+      onDetectionTyped(typingRange.textInside(sourceText));
     }
   }
 }
