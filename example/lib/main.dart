@@ -42,6 +42,9 @@ class _MyAppState extends State<MyApp> {
                   onDetectionTyped: (text) {
                     print(text);
                   },
+                  onDetectionFinished: () {
+                    print("finished");
+                  },
                 ),
                 // TextField(),
               ],
