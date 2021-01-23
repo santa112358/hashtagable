@@ -16,6 +16,8 @@ const _thaiLetters = '\u0E00-\u0E7F';
 
 const _norwegianLetters = 'åøæ';
 
+const _germanLetters = 'ÄäÖöÜüẞß';
+
 const hashTagContentLetters = _symbols +
     _numbers +
     _englishLetters +
@@ -24,7 +26,8 @@ const hashTagContentLetters = _symbols +
     _spanishLetters +
     _arabicLetters +
     _thaiLetters +
-    _norwegianLetters;
+    _norwegianLetters +
+    _germanLetters;
 
 /// Regular expression to extract hashtag from text
 ///

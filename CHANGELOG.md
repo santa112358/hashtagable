@@ -17,6 +17,7 @@
 ## 1.0.4
 * Support Korean
 
+
 ## 1.0.3
 * Fix the argument of onTap method
 
