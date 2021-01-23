@@ -1,3 +1,6 @@
+## 1.0.8
+* Add German support
+
 ## 1.0.7
 * Add callback onDetectionFinished
 
