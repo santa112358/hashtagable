@@ -1,3 +1,6 @@
+## 1.0.8
+* Add German support
+
 ## 1.0.7
 * Add callback onDetectionFinished
 
@@ -16,6 +19,7 @@
 
 ## 1.0.4
 * Support Korean
+
 
 ## 1.0.3
 * Fix the argument of onTap method
