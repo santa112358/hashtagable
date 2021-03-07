@@ -23,6 +23,7 @@ class _MyAppState extends State<MyApp> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 /// Tagged text only to be shown
+                TextField(),
                 HashTagText(
                   text: "#Welcome to #hashtagable\n This is #ReadOnlyText",
                   basicStyle: TextStyle(fontSize: 22, color: Colors.black),
