@@ -74,6 +74,7 @@ class HashTagEditableText extends EditableText {
     bool rendererIgnoresPointer = true,
     Color backgroundCursorColor = CupertinoColors.inactiveGray,
     bool enableInteractiveSelection = true,
+    Color autocorrectionTextRectColor,
   }) : super(
           key: key,
           focusNode: (focusNode) ?? FocusNode(),
@@ -125,6 +126,7 @@ class HashTagEditableText extends EditableText {
           showSelectionHandles: showSelectionHandles,
           rendererIgnoresPointer: rendererIgnoresPointer,
           enableInteractiveSelection: enableInteractiveSelection,
+          autocorrectionTextRectColor: autocorrectionTextRectColor,
         );
 
   final ValueChanged<String> onDetectionTyped;

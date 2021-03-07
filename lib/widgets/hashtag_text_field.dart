@@ -854,6 +854,11 @@ class _HashTagTextFieldState extends State<HashTagTextField>
     }
   }
 
+  Color _defaultSelectionColor(BuildContext context, Color primary) {
+    final bool isDark = Theme.of(context).brightness == Brightness.dark;
+    return primary.withOpacity(isDark ? 0.40 : 0.12);
+  }
+
   @override
   Widget build(BuildContext context) {
     assert(debugCheckHasMaterial(context));
@@ -869,6 +874,8 @@ class _HashTagTextFieldState extends State<HashTagTextField>
     );
 
     final ThemeData themeData = Theme.of(context);
+    final TextSelectionThemeData selectionTheme =
+        TextSelectionTheme.of(context);
     final TextStyle style =
         themeData.textTheme.subtitle1.merge(widget.basicStyle);
     final TextStyle decoratedStyle =
@@ -968,6 +975,9 @@ class _HashTagTextFieldState extends State<HashTagTextField>
         dragStartBehavior: widget.dragStartBehavior,
         scrollController: widget.scrollController,
         scrollPhysics: widget.scrollPhysics,
+        autocorrectionTextRectColor: selectionTheme.selectionColor ??
+            _defaultSelectionColor(
+                context, CupertinoTheme.of(context).primaryColor),
       ),
     );
 
