@@ -86,15 +86,17 @@ class Composer {
   }
 
   Detection? typingDetection() {
-    return detections.firstWhere(
+    final res = detections.where(
       (detection) =>
           detection!.style == decoratedStyle &&
           detection.range.start <= selection &&
           detection.range.end >= selection,
-      orElse: () {
-        return null;
-      },
     );
+    if (res.isNotEmpty) {
+      return res.first;
+    } else {
+      return null;
+    }
   }
 
   void callOnDetectionTyped() {

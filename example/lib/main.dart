@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hashtagable/hashtagable.dart';
+import 'package:hashtagable/widgets/hashtag_text_field.dart';
 
 void main() {
   runApp(MyApp());
@@ -36,7 +37,6 @@ class _MyAppState extends State<MyApp> {
                   basicStyle: TextStyle(fontSize: 15, color: Colors.black),
                   decoratedStyle: TextStyle(fontSize: 15, color: Colors.blue),
                   keyboardType: TextInputType.multiline,
-                  maxLines: null,
 
                   /// Called when detection (word starts with #, or # and @) is being typed
                   onDetectionTyped: (text) {
@@ -47,8 +47,8 @@ class _MyAppState extends State<MyApp> {
                   onDetectionFinished: () {
                     print("detection finished");
                   },
+                  maxLines: null,
                 ),
-                // TextField(),
               ],
             ),
           ),

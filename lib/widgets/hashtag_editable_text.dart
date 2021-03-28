@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:hashtagable/composer/composer.dart';
 import 'package:hashtagable/detector/detector.dart';
@@ -21,9 +22,9 @@ class HashTagEditableText extends EditableText {
     required TextStyle basicStyle,
     required this.decoratedStyle,
     required Color cursorColor,
+    required this.decorateAtSign,
     this.onDetectionTyped,
     this.onDetectionFinished,
-    this.decorateAtSign,
     ValueChanged<String>? onChanged,
     ValueChanged<String>? onSubmitted,
     int? maxLines,
@@ -75,6 +76,12 @@ class HashTagEditableText extends EditableText {
     Color backgroundCursorColor = CupertinoColors.inactiveGray,
     bool enableInteractiveSelection = true,
     Color? autocorrectionTextRectColor,
+    String obscuringCharacter = '•',
+    AppPrivateCommandCallback? onAppPrivateCommand,
+    MouseCursor? mouseCursor,
+    Iterable<String>? autofillHints,
+    String? restorationId,
+    double? cursorHeight,
   }) : super(
           key: key,
           focusNode: (focusNode) ?? FocusNode(),
@@ -127,6 +134,12 @@ class HashTagEditableText extends EditableText {
           rendererIgnoresPointer: rendererIgnoresPointer,
           enableInteractiveSelection: enableInteractiveSelection,
           autocorrectionTextRectColor: autocorrectionTextRectColor,
+          obscuringCharacter: obscuringCharacter,
+          onAppPrivateCommand: onAppPrivateCommand,
+          mouseCursor: mouseCursor,
+          autofillHints: autofillHints,
+          restorationId: restorationId,
+          cursorHeight: cursorHeight,
         );
 
   final ValueChanged<String>? onDetectionTyped;
@@ -135,7 +148,7 @@ class HashTagEditableText extends EditableText {
 
   final TextStyle decoratedStyle;
 
-  final decorateAtSign;
+  final bool decorateAtSign;
 
   @override
   HashTagEditableTextState createState() => HashTagEditableTextState();
