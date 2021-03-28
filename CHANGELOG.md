@@ -1,5 +1,8 @@
-## 2.0.0
+## 2.0.0+1
 * Support null safety
+
+## 2.0.0
+* ~~Support null safety~~
 
 ## 1.0.9
 * Add auto correction color
