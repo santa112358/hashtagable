@@ -8,9 +8,9 @@ import 'package:hashtagable/hashtagable.dart';
 /// [onTap] is called when a tagged text is tapped.
 class HashTagText extends StatelessWidget {
   HashTagText(
-      {@required this.text,
-      @required this.basicStyle,
-      @required this.decoratedStyle,
+      {required this.text,
+      required this.basicStyle,
+      required this.decoratedStyle,
       this.decorateAtSign = false,
       this.onTap,
       this.textAlign = TextAlign.start,
@@ -27,17 +27,17 @@ class HashTagText extends StatelessWidget {
   final String text;
   final TextStyle basicStyle;
   final TextStyle decoratedStyle;
-  final Function(String) onTap;
+  final Function(String)? onTap;
   final TextAlign textAlign;
-  final TextDirection textDirection;
+  final TextDirection? textDirection;
   final bool softWrap;
   final TextOverflow overflow;
   final double textScaleFactor;
-  final int maxLines;
-  final Locale locale;
-  final StrutStyle strutStyle;
+  final int? maxLines;
+  final Locale? locale;
+  final StrutStyle? strutStyle;
   final TextWidthBasis textWidthBasis;
-  final TextHeightBehavior textHeightBehavior;
+  final TextHeightBehavior? textHeightBehavior;
   final bool decorateAtSign;
 
   @override

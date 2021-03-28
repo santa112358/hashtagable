@@ -15,21 +15,21 @@ import 'package:hashtagable/detector/detector.dart';
 /// EditableText which decorates the contents start with "#"
 class HashTagEditableText extends EditableText {
   HashTagEditableText({
-    Key key,
-    FocusNode focusNode,
-    @required TextEditingController controller,
-    @required TextStyle basicStyle,
-    @required this.decoratedStyle,
-    @required Color cursorColor,
+    Key? key,
+    FocusNode? focusNode,
+    required TextEditingController controller,
+    required TextStyle basicStyle,
+    required this.decoratedStyle,
+    required Color cursorColor,
     this.onDetectionTyped,
     this.onDetectionFinished,
     this.decorateAtSign,
-    ValueChanged<String> onChanged,
-    ValueChanged<String> onSubmitted,
-    int maxLines,
-    int minLines,
-    TextInputType keyboardType,
-    bool autofocus,
+    ValueChanged<String>? onChanged,
+    ValueChanged<String>? onSubmitted,
+    int? maxLines,
+    int? minLines,
+    TextInputType? keyboardType,
+    bool? autofocus,
     bool obscureText = false,
     bool readOnly = false,
     bool forceLine = true,
@@ -40,41 +40,41 @@ class HashTagEditableText extends EditableText {
       selectAll: true,
     ),
     bool autocorrect = true,
-    SmartDashesType smartDashesType,
-    SmartQuotesType smartQuotesType,
+    SmartDashesType? smartDashesType,
+    SmartQuotesType? smartQuotesType,
     bool enableSuggestions = true,
-    StrutStyle strutStyle,
+    StrutStyle? strutStyle,
     TextAlign textAlign = TextAlign.start,
-    TextDirection textDirection,
+    TextDirection? textDirection,
     TextCapitalization textCapitalization = TextCapitalization.none,
-    Locale locale,
-    double textScaleFactor,
+    Locale? locale,
+    double? textScaleFactor,
     bool expands = false,
-    Color selectionColor,
-    TextSelectionControls selectionControls,
-    TextInputAction textInputAction,
-    VoidCallback onEditingComplete,
-    SelectionChangedCallback onSelectionChanged,
-    VoidCallback onSelectionHandleTapped,
-    List<TextInputFormatter> inputFormatters,
+    Color? selectionColor,
+    TextSelectionControls? selectionControls,
+    TextInputAction? textInputAction,
+    VoidCallback? onEditingComplete,
+    SelectionChangedCallback? onSelectionChanged,
+    VoidCallback? onSelectionHandleTapped,
+    List<TextInputFormatter>? inputFormatters,
     double cursorWidth = 2.0,
-    Radius cursorRadius,
+    Radius? cursorRadius,
     bool cursorOpacityAnimates = false,
-    Offset cursorOffset,
+    Offset? cursorOffset,
     bool paintCursorAboveText = false,
     BoxHeightStyle selectionHeightStyle = BoxHeightStyle.tight,
     BoxWidthStyle selectionWidthStyle = BoxWidthStyle.tight,
     Brightness keyboardAppearance = Brightness.light,
     EdgeInsets scrollPadding = const EdgeInsets.all(20.0),
     DragStartBehavior dragStartBehavior = DragStartBehavior.start,
-    ScrollController scrollController,
-    ScrollPhysics scrollPhysics,
-    bool showCursor,
+    ScrollController? scrollController,
+    ScrollPhysics? scrollPhysics,
+    bool? showCursor,
     bool showSelectionHandles = false,
     bool rendererIgnoresPointer = true,
     Color backgroundCursorColor = CupertinoColors.inactiveGray,
     bool enableInteractiveSelection = true,
-    Color autocorrectionTextRectColor,
+    Color? autocorrectionTextRectColor,
   }) : super(
           key: key,
           focusNode: (focusNode) ?? FocusNode(),
@@ -92,10 +92,10 @@ class HashTagEditableText extends EditableText {
           readOnly: readOnly,
           forceLine: forceLine,
           toolbarOptions: toolbarOptions,
-          autocorrect: autocorrect ?? false,
+          autocorrect: autocorrect,
           smartDashesType: smartDashesType,
           smartQuotesType: smartQuotesType,
-          enableSuggestions: enableSuggestions ?? false,
+          enableSuggestions: enableSuggestions,
           strutStyle: strutStyle,
           textAlign: textAlign,
           textDirection: textDirection,
@@ -129,9 +129,9 @@ class HashTagEditableText extends EditableText {
           autocorrectionTextRectColor: autocorrectionTextRectColor,
         );
 
-  final ValueChanged<String> onDetectionTyped;
+  final ValueChanged<String>? onDetectionTyped;
 
-  final VoidCallback onDetectionFinished;
+  final VoidCallback? onDetectionFinished;
 
   final TextStyle decoratedStyle;
 
@@ -146,11 +146,11 @@ class HashTagEditableText extends EditableText {
 /// Return decorated tagged text by using functions in [Detector]
 class HashTagEditableTextState extends EditableTextState {
   @override
-  HashTagEditableText get widget => super.widget;
+  HashTagEditableText get widget => super.widget as HashTagEditableText;
 
-  Detector detector;
+  late Detector detector;
 
-  Detection prevTypingDetection;
+  Detection? prevTypingDetection;
 
   @override
   void initState() {
@@ -165,7 +165,7 @@ class HashTagEditableTextState extends EditableTextState {
   TextSpan buildTextSpan() {
     final detections = detector.getDetections(textEditingValue.text);
     final composer = Composer(
-      selection: textEditingValue?.selection?.start ?? -1,
+      selection: textEditingValue.selection.start,
       onDetectionTyped: widget.onDetectionTyped,
       sourceText: textEditingValue.text,
       decoratedStyle: widget.decoratedStyle,

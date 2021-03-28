@@ -12,7 +12,7 @@ bool hasHashTags(String value) {
       decoratedStyle: TextStyle(color: decoratedTextColor));
   final result = detector.getDetections(value);
   final detections = result
-      .where((detection) => detection.style.color == decoratedTextColor)
+      .where((detection) => detection.style!.color == decoratedTextColor)
       .toList();
   return detections.isNotEmpty;
 }
@@ -25,7 +25,7 @@ List<String> extractHashTags(String value) {
       decoratedStyle: TextStyle(color: decoratedTextColor));
   final detections = detector.getDetections(value);
   final taggedDetections = detections
-      .where((detection) => detection.style.color == decoratedTextColor)
+      .where((detection) => detection.style!.color == decoratedTextColor)
       .toList();
   final result = taggedDetections.map((decoration) {
     final text = decoration.range.textInside(value);
@@ -38,10 +38,10 @@ List<String> extractHashTags(String value) {
 ///
 /// Used in [HashTagText]
 TextSpan getHashTagTextSpan({
-  @required TextStyle decoratedStyle,
-  @required TextStyle basicStyle,
-  @required String source,
-  Function(String) onTap,
+  required TextStyle decoratedStyle,
+  required TextStyle basicStyle,
+  required String source,
+  Function(String)? onTap,
   bool decorateAtSign = false,
 }) {
   final decorations = Detector(
@@ -61,7 +61,7 @@ TextSpan getHashTagTextSpan({
               ..onTap = () {
                 final decoration = decorations[index];
                 if (decoration.style == decoratedStyle) {
-                  onTap(decoration.range.textInside(source).trim());
+                  onTap!(decoration.range.textInside(source).trim());
                 }
               };
             return MapEntry(
