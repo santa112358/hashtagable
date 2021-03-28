@@ -7,27 +7,27 @@ import 'package:hashtagable/detector/detector.dart';
 /// Expected to be used when Japanese letters are typed.
 class Composer {
   Composer({
-    @required this.sourceText,
-    @required this.detections,
-    @required this.composing,
-    @required this.selection,
-    @required this.decoratedStyle,
-    @required this.onDetectionTyped,
+    required this.sourceText,
+    required this.detections,
+    required this.composing,
+    required this.selection,
+    required this.decoratedStyle,
+    required this.onDetectionTyped,
   });
 
   final String sourceText;
-  final List<Detection> detections;
+  final List<Detection?> detections;
   final TextRange composing;
   final int selection;
   final TextStyle decoratedStyle;
-  final ValueChanged<String> onDetectionTyped;
+  final ValueChanged<String>? onDetectionTyped;
 
   // TODO(Takahashi): Add test code for composing
   TextSpan getComposedTextSpan() {
     final span = detections.map(
       (item) {
-        final spanRange = item.range;
-        final spanStyle = item.style;
+        final spanRange = item!.range;
+        final spanStyle = item.style!;
         final underlinedStyle =
             spanStyle.copyWith(decoration: TextDecoration.underline);
         if (spanRange.start <= composing.start &&
@@ -85,10 +85,10 @@ class Composer {
     return TextSpan(children: span);
   }
 
-  Detection typingDetection() {
+  Detection? typingDetection() {
     return detections.firstWhere(
       (detection) =>
-          detection.style == decoratedStyle &&
+          detection!.style == decoratedStyle &&
           detection.range.start <= selection &&
           detection.range.end >= selection,
       orElse: () {
@@ -100,7 +100,7 @@ class Composer {
   void callOnDetectionTyped() {
     final typingRange = typingDetection()?.range;
     if (typingRange != null) {
-      onDetectionTyped(typingRange.textInside(sourceText));
+      onDetectionTyped!(typingRange.textInside(sourceText));
     }
   }
 }

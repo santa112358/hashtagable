@@ -4,11 +4,11 @@ import 'hashtag_regular_expression.dart';
 
 /// DataModel to explain the unit of word in detection system
 class Detection extends Comparable<Detection> {
-  Detection({@required this.range, this.style, this.emojiStartPoint});
+  Detection({required this.range, this.style, this.emojiStartPoint});
 
   final TextRange range;
-  final TextStyle style;
-  final int emojiStartPoint;
+  final TextStyle? style;
+  final int? emojiStartPoint;
 
   @override
   int compareTo(Detection other) {
@@ -20,16 +20,16 @@ class Detection extends Comparable<Detection> {
 ///
 /// Return the list of [Detection] in [getDetections]
 class Detector {
-  final TextStyle textStyle;
-  final TextStyle decoratedStyle;
-  final bool decorateAtSign;
+  final TextStyle? textStyle;
+  final TextStyle? decoratedStyle;
+  final bool? decorateAtSign;
 
   Detector({this.textStyle, this.decoratedStyle, this.decorateAtSign = false});
 
   List<Detection> _getSourceDetections(
       List<RegExpMatch> tags, String copiedText) {
-    TextRange previousItem;
-    final result = List<Detection>();
+    TextRange? previousItem;
+    final result = <Detection>[];
     for (var tag in tags) {
       ///Add untagged content
       if (previousItem == null) {
@@ -62,13 +62,13 @@ class Detector {
 
   ///Decorate tagged content, filter out the ones includes emoji.
   List<Detection> _getEmojiFilteredDetections(
-      {List<Detection> source,
-      String copiedText,
-      List<RegExpMatch> emojiMatches}) {
-    final result = List<Detection>();
+      {required List<Detection> source,
+      String? copiedText,
+      List<RegExpMatch>? emojiMatches}) {
+    final result = <Detection>[];
     for (var item in source) {
-      int emojiStartPoint;
-      for (var emojiMatch in emojiMatches) {
+      int? emojiStartPoint;
+      for (var emojiMatch in emojiMatches!) {
         final detectionContainsEmoji = (item.range.start < emojiMatch.start &&
             emojiMatch.end <= item.range.end);
         if (detectionContainsEmoji) {
@@ -112,13 +112,13 @@ class Detector {
 
     /// This is to avoid the error caused by 'regExp' which counts the emoji's length 1.
     emojiMatches.forEach((emojiMatch) {
-      final emojiLength = emojiMatch.group(0).length;
+      final emojiLength = emojiMatch.group(0)!.length;
       final replacementText = "a" * emojiLength;
       copiedText = copiedText.replaceRange(
           emojiMatch.start, emojiMatch.end, replacementText);
     });
 
-    final regExp = decorateAtSign ? hashTagAtSignRegExp : hashTagRegExp;
+    final regExp = decorateAtSign! ? hashTagAtSignRegExp : hashTagRegExp;
 
     final tags = regExp.allMatches(copiedText).toList();
     if (tags.isEmpty) {
