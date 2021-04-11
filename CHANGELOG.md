@@ -1,3 +1,6 @@
+## 2.0.1
+* Fix errors occurred in `onDetectionFinished` and `onDetectionTyped`.
+
 ## 2.0.0+1
 * Support null safety
 
