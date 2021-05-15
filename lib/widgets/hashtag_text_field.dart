@@ -42,7 +42,7 @@ class _TextFieldSelectionGestureDetectorBuilder
     extends TextSelectionGestureDetectorBuilder {
   _TextFieldSelectionGestureDetectorBuilder({
     required _HashTagTextFieldState state,
-  })   : _state = state,
+  })  : _state = state,
         super(delegate: state);
 
   final _HashTagTextFieldState _state;
@@ -1419,7 +1419,7 @@ class _HashTagTextFieldState extends State<HashTagTextField>
 
     if (kIsWeb) {
       return Shortcuts(
-        shortcuts: scrollShortcutOverrides,
+        shortcuts: {},
         child: child,
       );
     }
