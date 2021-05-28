@@ -1,3 +1,6 @@
+## 2.0.2
+* Fix errors occurred on flutter 2.2.x
+
 ## 2.0.1
 * Fix errors occurred in `onDetectionFinished` and `onDetectionTyped`.
 
