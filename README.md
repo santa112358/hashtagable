@@ -104,4 +104,4 @@ If you have any requests or questions, please feel free to ask on [github](https
 
 ***
 
-Contributors: [Santa Takahashi](https://github.com/santa112358), [Matheus Perez](https://github.com/matheusperez), [Marcel Schneider](https://github.com/SchnMar), [Ho Kim](https://github.com/kerryeon)
+Contributors: [Santa Takahashi](https://github.com/santa112358), [Matheus Perez](https://github.com/matheusperez), [Marcel Schneider](https://github.com/SchnMar), [Ho Kim](https://github.com/kerryeon), [Burak](https://github.com/buraktabn)
