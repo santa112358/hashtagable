@@ -1,17 +1,16 @@
 name: hashtagable
 description: Widgets and functions to implement hashtag decorated text. Decorates the words which start with `#` like a Twitter.
 version: 2.1.0
-author: Santa Takahashi <sun.jp.0212@gmail.com>
 homepage: https://github.com/santa112358/hashtagable
 repository: https://github.com/santa112358/hashtagable
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: ">=2.16.1 <3.0.0"
+  flutter: "2.10.3"
 
 dependencies:
   flutter:
     sdk: flutter
-  provider: ^6.0.0
 
 dev_dependencies:
   flutter_test:

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hashtagable/hashtagable.dart';
-import 'package:hashtagable/widgets/hashtag_text_field.dart';
 
 void main() {
   runApp(MyApp());
