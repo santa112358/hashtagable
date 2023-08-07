@@ -37,20 +37,20 @@ List<String> extractHashTags(String value) {
 /// Returns textSpan with decorated tagged text
 ///
 /// Used in [HashTagText]
-TextSpan getHashTagTextSpan({
-  required TextStyle decoratedStyle,
-  required TextStyle basicStyle,
-  required String source,
-  Function(String)? onTap,
-  bool decorateAtSign = false,
-}) {
+TextSpan getHashTagTextSpan(
+    {required TextStyle decoratedStyle,
+    required TextStyle basicStyle,
+    required String source,
+    Function(String)? onTap,
+    bool decorateAtSign = false,
+    List<InlineSpan>? children}) {
   final decorations = Detector(
           decoratedStyle: decoratedStyle,
           textStyle: basicStyle,
           decorateAtSign: decorateAtSign)
       .getDetections(source);
   if (decorations.isEmpty) {
-    return TextSpan(text: source, style: basicStyle);
+    return TextSpan(text: source, style: basicStyle, children: children);
   } else {
     decorations.sort();
     final span = decorations
@@ -77,6 +77,6 @@ TextSpan getHashTagTextSpan({
         .values
         .toList();
 
-    return TextSpan(children: span);
+    return TextSpan(children: [...span, ...(children ?? [])]);
   }
 }
