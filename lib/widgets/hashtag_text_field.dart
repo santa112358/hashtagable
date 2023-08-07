@@ -84,7 +84,7 @@ class _TextFieldSelectionGestureDetectorBuilder
   }
 
   @override
-  void onSingleTapUp(TapUpDetails details) {
+  void onSingleTapUp(TapDragUpDetails details) {
     editableText.hideToolbar();
     if (delegate.selectionEnabled) {
       switch (Theme.of(_state.context).platform) {
@@ -358,7 +358,7 @@ class HashTagTextField extends StatefulWidget {
         'Use maxLengthEnforcement parameter which provides more specific '
         'behavior related to the maxLength limit. '
         'This feature was deprecated after v1.25.0-5.0.pre.')
-        this.maxLengthEnforced = true,
+    this.maxLengthEnforced = true,
     this.maxLengthEnforcement,
     this.onChanged,
     this.onEditingComplete,
@@ -933,12 +933,12 @@ class _HashTagTextFieldState extends State<HashTagTextField>
 
   bool get _isEnabled => widget.enabled ?? widget.decoration?.enabled ?? true;
 
-  int get _currentLength => _effectiveController.value.text.characters.length;
+  int get _currentLength => _effectiveController.value.text.codeUnits.length;
 
   bool get _hasIntrinsicError =>
       widget.maxLength != null &&
       widget.maxLength! > 0 &&
-      _effectiveController.value.text.characters.length > widget.maxLength!;
+      _effectiveController.value.text.codeUnits.length > widget.maxLength!;
 
   bool get _hasError =>
       widget.decoration?.errorText != null || _hasIntrinsicError;
