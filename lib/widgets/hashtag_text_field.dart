@@ -25,7 +25,6 @@ export 'package:flutter/services.dart'
 typedef InputCounterWidgetBuilder = Widget? Function(
   /// The build context for the TextField.
   BuildContext context, {
-
   /// The length of the string currently in the input.
   required int currentLength,
 
@@ -103,6 +102,9 @@ class _TextFieldSelectionGestureDetectorBuilder
               // On macOS/iOS/iPadOS a touch tap places the cursor at the edge
               // of the word.
               renderEditable.selectWordEdge(cause: SelectionChangedCause.tap);
+              break;
+            case PointerDeviceKind.trackpad:
+              // TODO: Handle this case.
               break;
           }
           break;

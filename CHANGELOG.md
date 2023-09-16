@@ -1,3 +1,5 @@
+## 2.2.0
+* Upgrade flutter version to 2.10.3
 ## 2.1.0
 * Upgrade flutter version to 2.10.3
 
