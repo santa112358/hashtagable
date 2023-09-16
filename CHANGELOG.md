@@ -1,5 +1,9 @@
+## 2.3.0+1
+* Fix analysis errors
+## 2.3.0
+* Fix analysis errors
 ## 2.2.0
-* Upgrade flutter version to 2.10.3
+* Fix analysis errors
 ## 2.1.0
 * Upgrade flutter version to 2.10.3
 
